@@ -66,15 +66,15 @@ public class BSRPathView extends BSRPathBase {
                 view.setX(bsrPathBase.truePointX);
                 view.setY(bsrPathBase.truePointY);
 
+                view.setPivotX(bsrPathBase.xPercent);
+                view.setPivotY(bsrPathBase.yPercent);
+
                 if (bsrPathBase.currentScaleValue != -1) {
-                    view.setPivotX(0.5f);
-                    view.setPivotY(0.5f);
                     view.setScaleX(bsrPathBase.currentScaleValue);
                     view.setScaleY(bsrPathBase.currentScaleValue);
                 }
 
                 if (bsrPathBase.rotation == -10000) {
-
                     if (lastPoint == null) {
                         lastPoint = new PointF();
                         lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);

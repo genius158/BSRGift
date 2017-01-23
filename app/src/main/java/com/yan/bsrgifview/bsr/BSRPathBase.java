@@ -20,8 +20,8 @@ public class BSRPathBase {
     public float truePointY;
     public float rotation = -10000;
 
-    protected float xPercent = 0;
-    protected float yPercent = 0;
+    protected float xPercent = 0.5f;
+    protected float yPercent = 0.5f;
 
     protected BSRPathBase attachPathBase;
     protected float attachDx = 0;

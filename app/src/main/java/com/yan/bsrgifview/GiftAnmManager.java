@@ -139,7 +139,7 @@ public class GiftAnmManager {
         bsrPathView.addPositionControlPoint(0, 500);
         bsrPathView.addPositionControlPoint(0, 500);
         bsrPathView.addPositionControlPoint(-1880, 1000);
-//        bsrPathView.setRotationFollow(true);
+        bsrPathView.setRotationFollow(true);
         bsrPathView.setDuring(3000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
