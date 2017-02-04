@@ -83,6 +83,11 @@ public class BSRPathBase {
         return this.rotationFirst;
     }
 
+    public void setRotation(float rotation) {
+        setFirstScale(rotation);
+        setLastRotation(rotation);
+    }
+
     public PointF getFirstPositionPoint() {
         return positionPointFirst;
     }
@@ -118,6 +123,11 @@ public class BSRPathBase {
 
     public void setLastScale(float scaleLast) {
         this.scaleLast = scaleLast;
+    }
+
+    public void setScale(float scale) {
+        setFirstScale(scale);
+        setLastScale(scale);
     }
 
     public void setDuring(int during) {
