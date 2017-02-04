@@ -24,7 +24,6 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by yan on 2016/12/14.
@@ -194,8 +193,7 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
+        bsrPathView.setPositionPoint(0, 500);
         bsrPathView.addScaleControl(0.2f);
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(1.0f);
@@ -232,9 +230,7 @@ public class GiftAnmManager {
             } else if (i >= 7 && i < 13) {
                 bsrPointT.setLastRotation(-(i - 6) * 20);
             }
-
-            bsrPointT.addPositionControlPoint(400, 500);
-            bsrPointT.addPositionControlPoint(400, 500);
+            bsrPointT.setPositionPoint(400, 500);
             bsrPointT.setRes(context, R.drawable.kongque_cibang1);
             bsrPointT.setDuring(during);
             bsrPointT.setXPercent(0.5f);
@@ -249,8 +245,6 @@ public class GiftAnmManager {
         BSRPathPoint bsrPoint = new BSRPathPoint();
         bsrPoint.attachPoint(bsrPathPoints.get(0), 0, 100);
         bsrPoint.setRes(context, R.drawable.kongque_main);
-        bsrPoint.addPositionControlPoint(0, 0);
-        bsrPoint.addPositionControlPoint(0, 0);
         bsrPoint.setDuring(during);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
         bsrPoint.setAntiAlias(true);
@@ -258,8 +252,6 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 0);
-        bsrPathView.addPositionControlPoint(0, 0);
         bsrPathView.setDuring(during * 2);
 
         giftLayout.addChild(bsrPathView);
@@ -288,8 +280,8 @@ public class GiftAnmManager {
                             dragon.setDuring(during + 2);
                             dragon.setInterpolator(new LinearInterpolator());
                             dragon.setRes(context, dragonIds[index]);
-                            dragon.addPositionControlPoint(0, 200);
-                            dragon.addPositionControlPoint(0, 200);
+                            dragon.setPositionPoint(0, 200);
+                            dragon.setPositionPoint(0, 200);
                             dragon.adjustWidth(true);
                             bsrGiftView.addBSRPathPointAndDraw(dragon);
                         } else {
@@ -306,8 +298,6 @@ public class GiftAnmManager {
                 });
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 0);
-        bsrPathView.addPositionControlPoint(0, 0);
         bsrPathView.setDuring(2000 + 2000);
         giftLayout.setAlphaTrigger(0.99f);
         giftLayout.addChild(bsrPathView);
@@ -322,8 +312,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint = new BSRPathPoint();
         pathPoint.setRes(context, R.drawable.kiss_chun);
         pathPoint.setDuring(during);
-        pathPoint.addPositionControlPoint(400, 500);
-        pathPoint.addPositionControlPoint(400, 500);
+        pathPoint.setPositionPoint(400, 500);
         pathPoint.addScaleControl(0.2f);
         pathPoint.addScaleControl(0.8f);
         pathPoint.addScaleControl(0.8f);
@@ -339,8 +328,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart1 = new BSRPathPoint();
         pathPointHeart1.setRes(context, R.drawable.kiss_xin);
         pathPointHeart1.setDuring(during);
-        pathPointHeart1.addPositionControlPoint(200, 600);
-        pathPointHeart1.addPositionControlPoint(200, 600);
+        pathPointHeart1.setPositionPoint(200, 600);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
@@ -357,8 +345,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart2 = new BSRPathPoint();
         pathPointHeart2.setRes(context, R.drawable.kiss_xin);
         pathPointHeart2.setDuring(during);
-        pathPointHeart2.addPositionControlPoint(110, 620);
-        pathPointHeart2.addPositionControlPoint(110, 620);
+        pathPointHeart2.setPositionPoint(110, 620);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
@@ -376,8 +363,6 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 0);
-        bsrPathView.addPositionControlPoint(0, 0);
         bsrPathView.setDuring(during * 2);
 
         giftLayout.addChild(bsrPathView);
@@ -412,8 +397,6 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint2 = new BSRPathPoint();
         pathPoint2.setRes(context, R.drawable.ship01);
         pathPoint2.setDuring(during);
-        pathPoint2.addPositionControlPoint(0, 0);
-        pathPoint2.addPositionControlPoint(0, 0);
         pathPoint2.attachPoint(bsrPathPoints.get(0), 0, 430);
         pathPoint2.setXPercent(0.5f);
         pathPoint2.setYPercent(0.5f);
@@ -429,8 +412,6 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 0);
-        bsrPathView.addPositionControlPoint(0, 0);
         bsrPathView.setDuring(during * 2);
 
         giftLayout.addChild(bsrPathView);
@@ -456,8 +437,6 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(0, 0);
-        bsrPathView.addPositionControlPoint(0, 0);
         bsrPathView.setDuring(during * 2);
 
         giftLayout.addChild(bsrPathView);

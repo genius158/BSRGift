@@ -87,16 +87,21 @@ public class BSRPathBase {
         return positionPointFirst;
     }
 
-    public void setFirstPositionPoint(PointF positionPointFirst) {
-        this.positionPointFirst = positionPointFirst;
+    public void setFirstPositionPoint(float pointPositionX, float pointPositionY) {
+        this.positionPointFirst.set(pointPositionX, pointPositionY);
     }
 
     public PointF getLastPositionPoint() {
         return positionPointLast;
     }
 
-    public void setLastPositionPoint(PointF positionPointLast) {
-        this.positionPointLast = positionPointLast;
+    public void setLastPositionPoint(float pointPositionX, float pointPositionY) {
+        this.positionPointLast.set(pointPositionX, pointPositionY);
+    }
+
+    public void setPositionPoint(float pointPositionX, float pointPositionY) {
+        setFirstPositionPoint(pointPositionX, pointPositionY);
+        setLastPositionPoint(pointPositionX, pointPositionY);
     }
 
     public float getFirstScale() {
