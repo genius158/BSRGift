@@ -188,14 +188,14 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(100, -200);
-        bsrPathView.addPositionControlPoint(1000, 500);
-        bsrPathView.addPositionControlPoint(200, 800);
-        bsrPathView.addPositionControlPoint(-200, -200);
+        bsrPathView.addPositionControlPoint(-100, -500);
+        bsrPathView.addPositionControlPoint(1000, 400);
+        bsrPathView.addPositionControlPoint(-200, 800);
+        bsrPathView.addPositionControlPoint(-600, -200);
         bsrPathView.setScale(0.3f);
         bsrPathView.setFirstRotation(90);
         bsrPathView.autoRotation();
-        bsrPathView.setDuring(4000);
+        bsrPathView.setDuring(3000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
             public void onAnimationEnd(BSRPathBase bsrPathPoint) {
@@ -257,8 +257,8 @@ public class GiftAnmManager {
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(10f);
-        bsrPathView.setXPercent(0.5f);
-        bsrPathView.setYPercent(0.5f);
+        bsrPathView.setXPercent(0f);
+        bsrPathView.setYPercent(0f);
         bsrPathView.setDuring(2000);
         bsrPathView.setInterpolator(new AccelerateInterpolator());
         bsrPathView.addEndListeners(new OnAnmEndListener() {
@@ -298,7 +298,7 @@ public class GiftAnmManager {
         }
 
         BSRPathPoint bsrPoint = new BSRPathPoint();
-        bsrPoint.attachPoint(bsrPathPoints.get(0), 0, 100);
+        bsrPoint.attachPoint(bsrPathPoints.get(0), 0, 200);
         bsrPoint.setRes(context, R.drawable.kongque_main);
         bsrPoint.setDuring(during);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
@@ -353,7 +353,7 @@ public class GiftAnmManager {
                 });
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.setDuring(2000 + 2000);
+        bsrPathView.setDuring(2000*2);
         giftLayout.setAlphaTrigger(0.99f);
         giftLayout.addChild(bsrPathView);
     }
@@ -473,32 +473,6 @@ public class GiftAnmManager {
         bsrGiftView.addBSRPathPoints(bsrPathPoints);
 
     }
-
-    public void showPath() {
-        final BSRGiftView bsrGiftView = new BSRGiftView(context);
-        int during = 2000;
-        bsrGiftView.setAlphaTrigger(0.99f);
-        List<BSRPathPoint> bsrPathPoints = new ArrayList<>();
-
-        BSRPathPoint pathPoint = new BSRPathPoint();
-        pathPoint.setRes(context, R.drawable.ship02);
-        pathPoint.setDuring(during);
-        pathPoint.addPositionControlPoint(-500, 1080);
-        pathPoint.addPositionControlPoint(50, 0);
-        pathPoint.addPositionControlPoint(50, 500);
-        pathPoint.addPositionControlPoint(909, 1920);
-        pathPoint.addPositionControlPoint(50, 500);
-        bsrPathPoints.add(pathPoint);
-
-        BSRPathView bsrPathView = new BSRPathView();
-        bsrPathView.setChild(bsrGiftView);
-        bsrPathView.setDuring(during * 2);
-
-        giftLayout.addChild(bsrPathView);
-        bsrGiftView.addBSRPathPoints(bsrPathPoints);
-
-    }
-
 
     public void onDestroy() {
 

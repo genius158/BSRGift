@@ -63,23 +63,21 @@ public class BSRPathView extends BSRPathBase {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 BSRPathBase bsrPathBase = (BSRPathBase) animation.getAnimatedValue();
+                view.setPivotX(bsrPathBase.xPercent * view.getWidth());
+                view.setPivotY(bsrPathBase.yPercent * view.getHeight());
+
                 view.setX(bsrPathBase.truePointX);
                 view.setY(bsrPathBase.truePointY);
-
-                view.setPivotX(bsrPathBase.xPercent);
-                view.setPivotY(bsrPathBase.yPercent);
 
                 if (bsrPathBase.trueScaleValue != -1) {
                     view.setScaleX(bsrPathBase.trueScaleValue);
                     view.setScaleY(bsrPathBase.trueScaleValue);
                 }
-
                 if (bsrPathBase.trueRotation == -10000) {
                     if (lastPoint == null) {
                         lastPoint = new PointF();
                         lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
                     }
-
                     float degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, bsrPathBase.truePointX, bsrPathBase.truePointY);
                     view.setRotation(degree + bsrPathBase.getFirstRotation());
 
