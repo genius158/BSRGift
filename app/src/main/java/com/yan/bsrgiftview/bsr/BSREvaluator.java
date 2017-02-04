@@ -22,7 +22,22 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         List<PointF> pointPositionFList;
         List<Float> scaleList;
         List<Float> rotationList;
+
+        PointF firstPositionPoint = new PointF(
+                endValue.getFirstPositionPoint().x
+                , endValue.getFirstPositionPoint().y);
+        PointF lastPositionPoint = new PointF(
+                endValue.getLastPositionPoint().x
+                , endValue.getLastPositionPoint().y);
+
         if (endValue.isPositionInScreen()) {
+            firstPositionPoint = new PointF(
+                    endValue.getFirstPositionPoint().x * endValue.screenWidth
+                    , endValue.getFirstPositionPoint().y * endValue.screenHeight);
+            lastPositionPoint = new PointF(
+                    endValue.getLastPositionPoint().x * endValue.screenWidth
+                    , endValue.getLastPositionPoint().y * endValue.screenHeight);
+
             pointPositionFList = new ArrayList<>();
             for (PointF pointF : endValue.getPositionControlPoint()) {
                 pointPositionFList.add(
@@ -42,12 +57,12 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
             );
         } else {
             endValue.setTruePositionPoint(
-                    endValue.getFirstPositionPoint().x
-                            + (endValue.getLastPositionPoint().x
-                            - endValue.getFirstPositionPoint().x) * t
-                    , endValue.getFirstPositionPoint().y
-                            + (endValue.getLastPositionPoint().y
-                            - endValue.getFirstPositionPoint().y) * t
+                    firstPositionPoint.x
+                            + (lastPositionPoint.x
+                            - firstPositionPoint.x) * t
+                    , firstPositionPoint.y
+                            + (lastPositionPoint.y
+                            - firstPositionPoint.y) * t
             );
         }
 
