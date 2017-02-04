@@ -29,10 +29,15 @@ public class BSRPathPoint extends BSRPathBase {
     private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
-    private boolean isAdjust = false;
+    private boolean isAdjustWidth = false;
+    private boolean isAdjustHeight = false;
 
     public void adjustWidth(boolean isAdjust) {
-        this.isAdjust = isAdjust;
+        this.isAdjustWidth = isAdjust;
+    }
+
+    public void adjustHeight(boolean isAdjust) {
+        this.isAdjustHeight = isAdjust;
     }
 
     public BSRPathPoint() {
@@ -59,11 +64,15 @@ public class BSRPathPoint extends BSRPathBase {
     }
 
     public void drawBSRPoint(Canvas canvas, float viewWidth, float viewhight) {
-        if (isAdjust) {
+        if (isAdjustWidth) {
             float times = viewWidth / getRes().getWidth();
             matrix.setScale(times, times);
+            if (isAdjustHeight) {
+                matrix.postTranslate(0, (viewhight - getRes().getHeight()) / 2);
+            }
             canvas.drawBitmap(res, matrix, paint);
         }
+
         if (canDraw) {
             canvas.drawBitmap(res, matrix, paint);
         }

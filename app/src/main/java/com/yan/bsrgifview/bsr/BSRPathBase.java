@@ -41,14 +41,14 @@ public class BSRPathBase {
 
     protected boolean pointPercentTrigger = false;
 
-    protected boolean isRotationFollow;
+    protected boolean isAutoRotation;
 
-    public boolean isRotationFollow() {
-        return isRotationFollow;
+    public boolean isAutoRotation() {
+        return isAutoRotation;
     }
 
     public void autoRotation() {
-        isRotationFollow = true;
+        isAutoRotation = true;
     }
 
     public void setPointPercentTrigger(boolean pointPercentTrigger) {

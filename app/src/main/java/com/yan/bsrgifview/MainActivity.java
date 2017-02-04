@@ -8,9 +8,6 @@ import android.view.View;
 import com.yan.bsrgifview.bsr.BSRGiftLayout;
 import com.yan.bsrgifview.bsr.BSRGiftView;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class MainActivity extends AppCompatActivity {
 
     BSRGiftView imageButton;
@@ -30,25 +27,27 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (time++ % 6) {
+                switch (time++ % 1) {
+//                    case 1:
+//                        giftAnmManager.showShip();
+//                        break;
+//                    case 1:
+//                        giftAnmManager.showCarTwo();
+//                        break;
+//                    case 2:
+//                        giftAnmManager.showDragon();
+//                        break;
+//                    case 3:
+//                        giftAnmManager.showKQ();
+//                        break;
+//                    case 4:
+//                        giftAnmManager.showCarOne();
+//                        break;
+//                    case 5:
+//                        giftAnmManager.showKiss();
+//                        break;
                     case 0:
-//                        giftAnmManager.showPath();
-                        giftAnmManager.showShip();
-                        break;
-                    case 1:
-                        giftAnmManager.showCarTwo();
-                        break;
-                    case 2:
-                        giftAnmManager.showDragon();
-                        break;
-                    case 3:
-                        giftAnmManager.showKQ();
-                        break;
-                    case 4:
-                        giftAnmManager.showCarOne();
-                        break;
-                    case 5:
-                        giftAnmManager.showKiss();
+                        giftAnmManager.showCarOnePath();
                         break;
                 }
             }

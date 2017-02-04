@@ -148,6 +148,65 @@ public class GiftAnmManager {
         giftLayout.addChild(bsrPathView);
     }
 
+    public void showCarOnePath() {
+        final BSRGiftView bsrGiftView = new BSRGiftView(context);
+        bsrGiftView.setAlphaTrigger(-1);
+        bsrGiftView.offsetTopAndBottom(SizeUtils.dp2px(context, 100));
+        final int during = 150;
+        final Subscription[] subscription = new Subscription[1];
+
+        Flowable.interval(during, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(new Subscriber<Long>() {
+                    int index = 0;
+
+                    @Override
+                    public void onSubscribe(Subscription s) {
+                        subscription[0] = s;
+                        s.request(Long.MAX_VALUE);
+                    }
+
+                    @Override
+                    public void onNext(Long aLong) {
+                        BSRPathPoint carOne = new BSRPathPoint();
+                        carOne.setDuring(during);
+                        carOne.setInterpolator(new LinearInterpolator());
+                        carOne.setRes(context, car1Ids[index++ % 7]);
+                        carOne.addPositionControlPoint(0, 0);
+                        carOne.addPositionControlPoint(0, 0);
+                        carOne.adjustWidth(true);
+                        carOne.adjustHeight(true);
+                        carOne.setAntiAlias(true);
+                        bsrGiftView.addBSRPathPointAndDraw(carOne);
+                    }
+
+                    public void onError(Throwable t) {
+                    }
+
+                    public void onComplete() {
+                    }
+                });
+
+        BSRPathView bsrPathView = new BSRPathView();
+        bsrPathView.setChild(bsrGiftView);
+        bsrPathView.addPositionControlPoint(100, -200);
+        bsrPathView.addPositionControlPoint(1000, 500);
+        bsrPathView.addPositionControlPoint(200, 800);
+        bsrPathView.addPositionControlPoint(-200, -200);
+        bsrPathView.setScale(0.3f);
+        bsrPathView.setFirstRotation(90);
+        bsrPathView.autoRotation();
+        bsrPathView.setDuring(3000);
+        bsrPathView.addEndListeners(new OnAnmEndListener() {
+            @Override
+            public void onAnimationEnd(BSRPathBase bsrPathPoint) {
+                subscription[0].cancel();
+            }
+        });
+
+        giftLayout.addChild(bsrPathView);
+    }
+
 
     public void showCarTwo() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);

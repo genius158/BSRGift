@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -65,8 +66,8 @@ public class BSRPathView extends BSRPathBase {
                 view.setX(bsrPathBase.truePointX);
                 view.setY(bsrPathBase.truePointY);
 
-                view.setPivotX(bsrPathBase.xPercent);
-                view.setPivotY(bsrPathBase.yPercent);
+                view.setPivotX(bsrPathBase.xPercent * view.getWidth() * trueScaleValue);
+                view.setPivotY(bsrPathBase.yPercent * view.getHeight() * trueScaleValue);
 
                 if (bsrPathBase.trueScaleValue != -1) {
                     view.setScaleX(bsrPathBase.trueScaleValue);
@@ -83,6 +84,8 @@ public class BSRPathView extends BSRPathBase {
                     view.setRotation(degree + bsrPathBase.getFirstRotation());
 
                     lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
+                } else {
+                    view.setRotation(bsrPathBase.trueRotation);
                 }
 
                 if (onAnimationStartListener != null) {

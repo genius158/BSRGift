@@ -40,10 +40,10 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
             );
         }
 
-        if (!endValue.isRotationFollow() && rotationList.size() < 2) {
+        if (!endValue.isAutoRotation() && rotationList.size() < 2) {
             endValue.trueRotation = endValue.getFirstRotation()
                     + (endValue.getLastRotation() - endValue.getFirstRotation()) * t;
-        } else if (!endValue.isRotationFollow() && rotationList.size() >= 2) {
+        } else if (!endValue.isAutoRotation() && rotationList.size() >= 2) {
             endValue.trueRotation = (BSRValue(rotationList, rotationList.size() - 1, 0, t));
         }
 
