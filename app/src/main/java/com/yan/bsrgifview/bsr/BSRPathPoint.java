@@ -29,15 +29,17 @@ public class BSRPathPoint extends BSRPathBase {
     private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
+    private float scaleInScreen = -10000;
+
     private boolean isCenterInside = false;
-    private boolean isAdjustWidth = false;
+
+    public void setScaleInScreen(float scaleInScreen) {
+        this.scaleInScreen = scaleInScreen;
+    }
 
     public void centerInside() {
         isCenterInside = true;
-    }
-
-    public void adjustWidth() {
-        isAdjustWidth = true;
+        scaleInScreen = 1;
     }
 
     public BSRPathPoint() {
@@ -63,32 +65,40 @@ public class BSRPathPoint extends BSRPathBase {
         return res;
     }
 
-    public void drawBSRPoint(Canvas canvas, float viewWidth, float viewHeight) {
-        if (isAdjustWidth) {
-            float timesWidth = viewWidth / getRes().getWidth();
-            matrix.setScale(timesWidth, timesWidth);
-            canvas.drawBitmap(res, matrix, paint);
-
-        } else if (isCenterInside) {
-            float timesWidth = viewWidth / getRes().getWidth();
-            float timesHeight = viewHeight / getRes().getHeight();
-            if (timesWidth > timesHeight) {
-                matrix.setScale(timesHeight, timesHeight);
-                matrix.postTranslate((viewWidth - getRes().getWidth()) / 2, 0);
-            } else {
-                matrix.setScale(timesWidth, timesWidth);
-                matrix.postTranslate(0, (viewHeight - getRes().getHeight()) / 2);
+    public void drawBSRPoint(Canvas canvas, float viewWidth, float viewHeight, boolean isFrameAnimation) {
+        if (isFrameAnimation) {
+            if (scaleInScreen != -10000) {
+                float timesWidth = viewWidth / getRes().getWidth();
+                float timesHeight = viewHeight / getRes().getHeight();
+                if (timesWidth >= timesHeight) {
+                    matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
+                    if (isCenterInside)
+                        matrix.postTranslate((viewWidth - getRes().getWidth()) / 2, 0);
+                } else {
+                    matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
+                    if (isCenterInside)
+                        matrix.postTranslate(0, (viewHeight - getRes().getHeight()) / 2);
+                }
             }
             canvas.drawBitmap(res, matrix, paint);
-        }
 
-        if (canDraw) {
-            canvas.drawBitmap(res, matrix, paint);
+        } else {
+            if (scaleInScreen != -10000) {
+                float timesWidth = viewWidth / getRes().getWidth();
+                float timesHeight = viewHeight / getRes().getHeight();
+                if (timesWidth > timesHeight) {
+                    matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
+                } else {
+                    matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
+                }
+            }
+            if (canDraw) {
+                canvas.drawBitmap(res, matrix, paint);
+            }
         }
     }
 
     public void startBsrAnimation(OnAnmEndListener endListener, final float alphaTrigger) {
-
         BSREvaluator bsrEvaluator = new BSREvaluator();
         if (alphaTrigger != -1) {
             if (backListener == null) {
@@ -122,11 +132,9 @@ public class BSRPathPoint extends BSRPathBase {
                                 lastPoint = new PointF();
                                 lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
                             }
-
                             if (bsrPathBase.trueRotation == -10000) {
                                 degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, bsrPathBase.truePointX, bsrPathBase.truePointY);
                             }
-
                             matrix.setTranslate(bsrPathBase.truePointX, bsrPathBase.truePointY);
                         }
                         if (bsrPathBase.trueScaleValue != -1) {

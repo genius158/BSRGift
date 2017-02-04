@@ -67,7 +67,7 @@ public class BSRGiftView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         if (directDrawBSRPoint != null) {
-            directDrawBSRPoint.drawBSRPoint(canvas, viewWidth, viewHeight);
+            directDrawBSRPoint.drawBSRPoint(canvas, viewWidth, viewHeight, true);
         } else
             drawBSRPathPoint(canvas);
 
@@ -93,10 +93,11 @@ public class BSRGiftView extends View {
     public void setScale(float scaleX, float scaleY) {
         matrix.setScale(scaleX, scaleY);
     }
+
     private void drawBSRPathPoint(Canvas canvas) {
         canvas.setMatrix(matrix);
         for (BSRPathPoint bsrPathPoint : bsrPathPoints) {
-            bsrPathPoint.drawBSRPoint(canvas, viewWidth, viewHeight);
+            bsrPathPoint.drawBSRPoint(canvas, viewWidth, viewHeight, false);
         }
     }
 
@@ -139,7 +140,6 @@ public class BSRGiftView extends View {
     public void setOnSingleFinish(OnAnmEndListener onSingleFinish) {
         this.onSingleFinish = onSingleFinish;
     }
-
 
 
     public interface OnAnimalFinish {

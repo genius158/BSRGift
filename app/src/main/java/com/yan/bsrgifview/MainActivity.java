@@ -28,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 switch (time++ % 7) {
                     case 0:
+                        giftAnmManager.showKiss();
+                        break;
+                    case 5:
                         giftAnmManager.showShip();
                         break;
                     case 1:
@@ -41,9 +44,6 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case 4:
                         giftAnmManager.showCarOne();
-                        break;
-                    case 5:
-                        giftAnmManager.showKiss();
                         break;
                     case 6:
                         giftAnmManager.showCarOnePath();

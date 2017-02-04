@@ -114,7 +114,7 @@ public class GiftAnmManager {
                         carOne.setRes(context, car1Ids[index++ % 7]);
                         carOne.addPositionControlPoint(0, 0);
                         carOne.addPositionControlPoint(0, 0);
-                        carOne.adjustWidth();
+                        carOne.setScaleInScreen(1);
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
                     }
@@ -230,7 +230,7 @@ public class GiftAnmManager {
                         carTwo.setDuring(during);
                         carTwo.setInterpolator(new LinearInterpolator());
                         carTwo.setRes(context, car2Ids[index++ % 2]);
-                        carTwo.adjustWidth();
+                        carTwo.setScaleInScreen(1);
                         carTwo.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carTwo);
                     }
@@ -337,7 +337,7 @@ public class GiftAnmManager {
                             dragon.setRes(context, dragonIds[index]);
                             dragon.setPositionPoint(0, 200);
                             dragon.setPositionPoint(0, 200);
-                            dragon.adjustWidth();
+                            dragon.setScaleInScreen(1);
                             bsrGiftView.addBSRPathPointAndDraw(dragon);
                         } else {
                             bsrGiftView.addBSRPathPointAndDraw(null);
@@ -377,6 +377,7 @@ public class GiftAnmManager {
         pathPoint.addScaleControl(0.8f);
         pathPoint.setXPercent(0.5f);
         pathPoint.setYPercent(0.5f);
+        pathPoint.setScaleInScreen(0.5f);
         pathPoint.setAntiAlias(true);
         bsrPathPoints.add(pathPoint);
 
@@ -394,6 +395,7 @@ public class GiftAnmManager {
         pathPointHeart1.addScaleControl(0.8f);
         pathPointHeart1.setXPercent(0.5f);
         pathPointHeart1.setYPercent(0.5f);
+        pathPointHeart1.setScaleInScreen(0.21f);
         pathPointHeart1.setAntiAlias(true);
         bsrPathPoints.add(pathPointHeart1);
 
@@ -413,6 +415,7 @@ public class GiftAnmManager {
         pathPointHeart2.addScaleControl(0.5f);
         pathPointHeart2.setXPercent(0.5f);
         pathPointHeart2.setYPercent(0.5f);
+        pathPointHeart2.setScaleInScreen(0.17f);
         pathPointHeart2.setAntiAlias(true);
         bsrPathPoints.add(pathPointHeart2);
 
