@@ -39,17 +39,26 @@ public class BSRPathBase {
     protected float attachDy = 0;
 
     protected PointF lastPoint;
-
     protected float delayTime = 0;
 
     protected boolean pointPercentTrigger = false;
-
     protected boolean isAutoRotation;
-
     protected boolean isPositionInScreen = false;
 
     public float screenWidth = -10000;
     public float screenHeight = -10000;
+
+    protected float scaleInScreen = -10000;
+    protected boolean isCenterInside = false;
+
+    public void setScaleInScreen(float scaleInScreen) {
+        this.scaleInScreen = scaleInScreen;
+    }
+
+    public void centerInside() {
+        isCenterInside = true;
+        scaleInScreen = 1;
+    }
 
     public void positionInScreen() {
         isPositionInScreen = true;

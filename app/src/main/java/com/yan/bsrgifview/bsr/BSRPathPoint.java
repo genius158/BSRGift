@@ -29,18 +29,6 @@ public class BSRPathPoint extends BSRPathBase {
     private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
-    private float scaleInScreen = -10000;
-
-    private boolean isCenterInside = false;
-
-    public void setScaleInScreen(float scaleInScreen) {
-        this.scaleInScreen = scaleInScreen;
-    }
-
-    public void centerInside() {
-        isCenterInside = true;
-        scaleInScreen = 1;
-    }
 
     public BSRPathPoint() {
         super();

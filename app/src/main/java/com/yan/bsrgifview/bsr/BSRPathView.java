@@ -66,9 +66,13 @@ public class BSRPathView extends BSRPathBase {
                 screenWidth = bsrGiftLayout.getMeasuredWidth();
                 screenHeight = bsrGiftLayout.getMeasuredWidth();
 
+                float timesWidth = screenWidth / view.getWidth();
+                float timesHeight = screenHeight / view.getHeight();
+
                 view.setPivotX(xPercent * view.getWidth());
                 view.setPivotY(yPercent * view.getHeight());
 
+                if ()
                 view.setX(truePointX - view.getWidth() * xPositionPercent);
                 view.setY(truePointY - view.getHeight() * yPositionPercent);
 
