@@ -29,15 +29,15 @@ public class BSRPathPoint extends BSRPathBase {
     private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
+    private boolean isCenterInside = false;
     private boolean isAdjustWidth = false;
-    private boolean isAdjustHeight = false;
 
-    public void adjustWidth(boolean isAdjust) {
-        this.isAdjustWidth = isAdjust;
+    public void centerInside() {
+        isCenterInside = true;
     }
 
-    public void adjustHeight(boolean isAdjust) {
-        this.isAdjustHeight = isAdjust;
+    public void adjustWidth() {
+        isAdjustWidth = true;
     }
 
     public BSRPathPoint() {
@@ -63,12 +63,21 @@ public class BSRPathPoint extends BSRPathBase {
         return res;
     }
 
-    public void drawBSRPoint(Canvas canvas, float viewWidth, float viewhight) {
+    public void drawBSRPoint(Canvas canvas, float viewWidth, float viewHeight) {
         if (isAdjustWidth) {
-            float times = viewWidth / getRes().getWidth();
-            matrix.setScale(times, times);
-            if (isAdjustHeight) {
-                matrix.postTranslate(0, (viewhight - getRes().getHeight()) / 2);
+            float timesWidth = viewWidth / getRes().getWidth();
+            matrix.setScale(timesWidth, timesWidth);
+            canvas.drawBitmap(res, matrix, paint);
+
+        } else if (isCenterInside) {
+            float timesWidth = viewWidth / getRes().getWidth();
+            float timesHeight = viewHeight / getRes().getHeight();
+            if (timesWidth > timesHeight) {
+                matrix.setScale(timesHeight, timesHeight);
+                matrix.postTranslate((viewWidth - getRes().getWidth()) / 2, 0);
+            } else {
+                matrix.setScale(timesWidth, timesWidth);
+                matrix.postTranslate(0, (viewHeight - getRes().getHeight()) / 2);
             }
             canvas.drawBitmap(res, matrix, paint);
         }

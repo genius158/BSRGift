@@ -114,7 +114,7 @@ public class GiftAnmManager {
                         carOne.setRes(context, car1Ids[index++ % 7]);
                         carOne.addPositionControlPoint(0, 0);
                         carOne.addPositionControlPoint(0, 0);
-                        carOne.adjustWidth(true);
+                        carOne.adjustWidth();
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
                     }
@@ -174,8 +174,7 @@ public class GiftAnmManager {
                         carOne.setRes(context, car1Ids[index++ % 7]);
                         carOne.addPositionControlPoint(0, 0);
                         carOne.addPositionControlPoint(0, 0);
-                        carOne.adjustWidth(true);
-                        carOne.adjustHeight(true);
+                        carOne.centerInside();
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
                     }
@@ -196,7 +195,7 @@ public class GiftAnmManager {
         bsrPathView.setScale(0.3f);
         bsrPathView.setFirstRotation(90);
         bsrPathView.autoRotation();
-        bsrPathView.setDuring(3000);
+        bsrPathView.setDuring(4000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
             public void onAnimationEnd(BSRPathBase bsrPathPoint) {
@@ -231,9 +230,7 @@ public class GiftAnmManager {
                         carTwo.setDuring(during);
                         carTwo.setInterpolator(new LinearInterpolator());
                         carTwo.setRes(context, car2Ids[index++ % 2]);
-                        carTwo.addPositionControlPoint(0, 0);
-                        carTwo.addPositionControlPoint(0, 0);
-                        carTwo.adjustWidth(true);
+                        carTwo.adjustWidth();
                         carTwo.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carTwo);
                     }
@@ -260,9 +257,9 @@ public class GiftAnmManager {
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(10f);
-        bsrPathView.setFirstScale(0);
-        bsrPathView.setLastScale(10);
-        bsrPathView.setDuring(3000);
+        bsrPathView.setXPercent(0.5f);
+        bsrPathView.setYPercent(0.5f);
+        bsrPathView.setDuring(2000);
         bsrPathView.setInterpolator(new AccelerateInterpolator());
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
@@ -340,7 +337,7 @@ public class GiftAnmManager {
                             dragon.setRes(context, dragonIds[index]);
                             dragon.setPositionPoint(0, 200);
                             dragon.setPositionPoint(0, 200);
-                            dragon.adjustWidth(true);
+                            dragon.adjustWidth();
                             bsrGiftView.addBSRPathPointAndDraw(dragon);
                         } else {
                             bsrGiftView.addBSRPathPointAndDraw(null);

@@ -66,8 +66,8 @@ public class BSRPathView extends BSRPathBase {
                 view.setX(bsrPathBase.truePointX);
                 view.setY(bsrPathBase.truePointY);
 
-                view.setPivotX(bsrPathBase.xPercent * view.getWidth() * trueScaleValue);
-                view.setPivotY(bsrPathBase.yPercent * view.getHeight() * trueScaleValue);
+                view.setPivotX(bsrPathBase.xPercent);
+                view.setPivotY(bsrPathBase.yPercent);
 
                 if (bsrPathBase.trueScaleValue != -1) {
                     view.setScaleX(bsrPathBase.trueScaleValue);
