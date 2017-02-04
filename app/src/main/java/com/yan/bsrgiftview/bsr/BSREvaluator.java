@@ -25,7 +25,8 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         if (endValue.isPositionInScreen()) {
             pointPositionFList = new ArrayList<>();
             for (PointF pointF : endValue.getPositionControlPoint()) {
-                pointPositionFList.add(new PointF(pointF.x * endValue.screenWidth, pointF.y * endValue.screenHeight));
+                pointPositionFList.add(
+                        new PointF(pointF.x * endValue.screenWidth, pointF.y * endValue.screenHeight));
             }
         } else {
             pointPositionFList = endValue.getPositionControlPoint();
@@ -35,18 +36,18 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         scaleList = endValue.getScaleControl();
 
         if (pointPositionFList != null && pointPositionFList.size() >= 2) {
-            BigDecimal b1 = new BigDecimal(
-                    BSRPointValueX(pointPositionFList, pointPositionFList.size() - 1, 0, t)
+            endValue.setTruePositionPoint(
+                    getValueRoundHalfUp(getBSRPointValueX(pointPositionFList, pointPositionFList.size() - 1, 0, t))
+                    , getValueRoundHalfUp(getBSRPointValueY(pointPositionFList, pointPositionFList.size() - 1, 0, t))
             );
-            float f1 = b1.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-            BigDecimal b2 = new BigDecimal(BSRPointValueY(pointPositionFList, pointPositionFList.size() - 1, 0, t));
-            float f2 = b2.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-
-            endValue.setTruePositionPoint(f1, f2);
         } else {
             endValue.setTruePositionPoint(
-                    endValue.getFirstPositionPoint().x + (endValue.getLastPositionPoint().x - endValue.getFirstPositionPoint().x) * t
-                    , endValue.getFirstPositionPoint().y + (endValue.getLastPositionPoint().y - endValue.getFirstPositionPoint().y) * t
+                    endValue.getFirstPositionPoint().x
+                            + (endValue.getLastPositionPoint().x
+                            - endValue.getFirstPositionPoint().x) * t
+                    , endValue.getFirstPositionPoint().y
+                            + (endValue.getLastPositionPoint().y
+                            - endValue.getFirstPositionPoint().y) * t
             );
         }
 
@@ -54,13 +55,16 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
             endValue.trueRotation = endValue.getFirstRotation()
                     + (endValue.getLastRotation() - endValue.getFirstRotation()) * t;
         } else if (!endValue.isAutoRotation() && rotationList.size() >= 2) {
-            endValue.trueRotation = (BSRValue(rotationList, rotationList.size() - 1, 0, t));
+            endValue.trueRotation = (
+                    getValueRoundHalfUp(getBSRValue(rotationList, rotationList.size() - 1, 0, t)));
         }
 
         if (scaleList != null && scaleList.size() >= 2) {
-            endValue.trueScaleValue = (BSRValue(scaleList, scaleList.size() - 1, 0, t));
+            endValue.trueScaleValue = (
+                    getValueRoundHalfUp(getBSRValue(scaleList, scaleList.size() - 1, 0, t)));
         } else if (endValue.getLastScale() != -10000) {
-            endValue.trueScaleValue = endValue.getFirstScale() + (endValue.getLastScale() - endValue.getFirstScale()) * t;
+            endValue.trueScaleValue = endValue.getFirstScale()
+                    + (endValue.getLastScale() - endValue.getFirstScale()) * t;
         }
 
         return endValue;
@@ -76,25 +80,30 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         void onValueBack(float value);
     }
 
-    private float BSRValue(List<Float> floats, int i, int j, float t) {
+    private float getValueRoundHalfUp(float value) {
+        BigDecimal b = new BigDecimal(value);
+        return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+    }
+
+    private float getBSRValue(List<Float> floats, int i, int j, float t) {
         if (i == 1) {
             return (1 - t) * floats.get(j) + t * floats.get(j + 1);
         }
-        return (1 - t) * BSRValue(floats, i - 1, j, t) + t * BSRValue(floats, i - 1, j + 1, t);
+        return (1 - t) * getBSRValue(floats, i - 1, j, t) + t * getBSRValue(floats, i - 1, j + 1, t);
     }
 
-    private float BSRPointValueX(List<PointF> pointFs, int i, int j, float t) {
+    private float getBSRPointValueX(List<PointF> pointFs, int i, int j, float t) {
         if (i == 1) {
             return (1 - t) * pointFs.get(j).x + t * pointFs.get(j + 1).x;
         }
-        return (1 - t) * BSRPointValueX(pointFs, i - 1, j, t) + t * BSRPointValueX(pointFs, i - 1, j + 1, t);
+        return (1 - t) * getBSRPointValueX(pointFs, i - 1, j, t) + t * getBSRPointValueX(pointFs, i - 1, j + 1, t);
 
     }
 
-    private float BSRPointValueY(List<PointF> pointFs, int i, int j, float t) {
+    private float getBSRPointValueY(List<PointF> pointFs, int i, int j, float t) {
         if (i == 1) {
             return (1 - t) * pointFs.get(j).y + t * pointFs.get(j + 1).y;
         }
-        return (1 - t) * BSRPointValueY(pointFs, i - 1, j, t) + t * BSRPointValueY(pointFs, i - 1, j + 1, t);
+        return (1 - t) * getBSRPointValueY(pointFs, i - 1, j, t) + t * getBSRPointValueY(pointFs, i - 1, j + 1, t);
     }
 }

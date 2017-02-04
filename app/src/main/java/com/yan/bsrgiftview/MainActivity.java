@@ -4,10 +4,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-
 import com.yan.bsrgiftview.bsr.BSRGiftLayout;
 import com.yan.bsrgiftview.bsr.BSRGiftView;
-
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,31 +26,31 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (time++ % 8) {
+                switch (time++ % 1) {
+//                    case 0:
+//                        giftAnmManager.showKiss();
+//                        break;
+//                    case 1:
+//                        giftAnmManager.showCarTwo();
+//                        break;
+//                    case 2:
+//                        giftAnmManager.showDragon();
+//                        break;
+//                    case 3:
+//                        giftAnmManager.showKQ();
+//                        break;
+//                    case 4:
+//                        giftAnmManager.showCarOne();
+//                        break;
+//                    case 5:
+//                        giftAnmManager.showShip();
+//                        break;
                     case 0:
-                        giftAnmManager.showKiss();
-                        break;
-                    case 1:
-                        giftAnmManager.showCarTwo();
-                        break;
-                    case 2:
-                        giftAnmManager.showDragon();
-                        break;
-                    case 3:
-                        giftAnmManager.showKQ();
-                        break;
-                    case 4:
-                        giftAnmManager.showCarOne();
-                        break;
-                    case 5:
-                        giftAnmManager.showShip();
-                        break;
-                    case 6:
                         giftAnmManager.showCarOnePath();
                         break;
-                    case 7:
-                        giftAnmManager.showPositionInScreen();
-                        break;
+//                    case 7:
+//                        giftAnmManager.showPositionInScreen();
+//                        break;
 
                 }
             }

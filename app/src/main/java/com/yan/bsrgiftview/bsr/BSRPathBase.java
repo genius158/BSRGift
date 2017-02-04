@@ -1,6 +1,7 @@
 package com.yan.bsrgiftview.bsr;
 
 import android.graphics.PointF;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -225,7 +226,7 @@ public class BSRPathBase {
     public static float getRotationPoint2Point(float x1, float y1, float x2, float y2) {
         double rotation = 0;
 
-        double k1 = (double) (y1 - y1) / (x1 * 2 - x1);
+        double k1 = 0;//(double) (y1 - y1) / (x1 * 2 - x1)
         double k2 = (double) (y2 - y1) / (x2 - x1);
         double tmpDegree = Math.atan((Math.abs(k1 - k2)) / (1 + k1 * k2)) / Math.PI * 180;
 
@@ -242,7 +243,6 @@ public class BSRPathBase {
         } else if (x2 == x1 && y2 > y1) {
             rotation = 180;
         }
-
         return (float) rotation;
     }
 }
