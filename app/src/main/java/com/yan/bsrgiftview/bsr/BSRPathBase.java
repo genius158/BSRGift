@@ -1,7 +1,6 @@
 package com.yan.bsrgiftview.bsr;
 
 import android.graphics.PointF;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;

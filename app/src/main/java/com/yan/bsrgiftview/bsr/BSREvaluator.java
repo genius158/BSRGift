@@ -13,7 +13,6 @@ import java.util.List;
 
 public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
 
-
     @Override
     public BSRPathBase evaluate(float t, BSRPathBase startValue, BSRPathBase endValue) {
         if (backListener != null) {

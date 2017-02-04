@@ -29,7 +29,6 @@ public class BSRPathPoint extends BSRPathBase {
     private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
-
     public BSRPathPoint() {
         super();
         paint = new Paint();
@@ -66,7 +65,6 @@ public class BSRPathPoint extends BSRPathBase {
                         matrix.preTranslate((viewWidth - getRes().getWidth()) / 2, 0);
                     else
                         matrix.preTranslate(0, (viewHeight - getRes().getHeight() * timesHeight * scaleInScreen) / 2);
-
                 } else {
                     matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
                     if (isCenterInside)
