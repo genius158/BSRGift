@@ -97,7 +97,7 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
 
     private float getValueRoundHalfUp(float value) {
         BigDecimal b = new BigDecimal(value);
-        return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
+        return b.setScale(3, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
     private float getBSRValue(List<Float> floats, int i, int j, float t) {

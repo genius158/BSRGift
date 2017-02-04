@@ -112,8 +112,6 @@ public class GiftAnmManager {
                         carOne.setDuring(during);
                         carOne.setInterpolator(new LinearInterpolator());
                         carOne.setRes(context, car1Ids[index++ % 7]);
-                        carOne.positionInScreen();
-                        carOne.setPositionPoint(0.1f,0);
                         carOne.setScaleInScreen(0.8f);
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
@@ -130,12 +128,12 @@ public class GiftAnmManager {
         bsrPathView.setChild(bsrGiftView);
         bsrPathView.positionInScreen();
         bsrPathView.addPositionControlPoint(1, 0.1f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
-        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0f, 0.3f);
         bsrPathView.addPositionControlPoint(-1f, 0.5f);
 
         bsrPathView.setDuring(3000);
@@ -188,12 +186,16 @@ public class GiftAnmManager {
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
         bsrPathView.positionInScreen();
-        bsrPathView.addPositionControlPoint(-0.5f, -0.5f);
-        bsrPathView.addPositionControlPoint(-0.5f, 0.5f);
-        bsrPathView.addPositionControlPoint(0.5f, 0.5f);
-        bsrPathView.addPositionControlPoint(0.5f, -0.5f);
+        bsrPathView.setPositionXPercent(0.5f);
+        bsrPathView.setPositionYPercent(0.5f);
+        bsrPathView.addPositionControlPoint(0,0);
+        bsrPathView.addPositionControlPoint(0,1);
+        bsrPathView.addPositionControlPoint(1,1);
+        bsrPathView.addPositionControlPoint(1,0);
         bsrPathView.setScale(0.3f);
         bsrPathView.setFirstRotation(90);
+        bsrPathView.setXPercent(0.5f);
+        bsrPathView.setYPercent(0.5f);
         bsrPathView.autoRotation();
         bsrPathView.setDuring(3000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
@@ -294,7 +296,7 @@ public class GiftAnmManager {
             }
             bsrPointT.positionInScreen();
             bsrPointT.setPositionPoint(0.5f, 0.2f);
-            bsrPointT.setPositionPercentX(0.5f);
+            bsrPointT.setPositionXPercent(0.5f);
             bsrPointT.setRes(context, R.drawable.kongque_cibang1);
             bsrPointT.setDuring(during);
             bsrPointT.setXPercent(0.5f);
@@ -344,8 +346,8 @@ public class GiftAnmManager {
         bsrPoint.addPositionControlPoint(0f, 1f);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
         bsrPoint.setAntiAlias(true);
-        bsrPoint.setPositionPercentX(0.5f);
-        bsrPoint.setPositionPercentY(0f);
+        bsrPoint.setPositionXPercent(0.5f);
+        bsrPoint.setPositionYPercent(0f);
         bsrPathPoints.add(bsrPoint);
 
         BSRPathView bsrPathView = new BSRPathView();
@@ -378,8 +380,6 @@ public class GiftAnmManager {
                             dragon.setDuring(during + 2);
                             dragon.setInterpolator(new LinearInterpolator());
                             dragon.setRes(context, dragonIds[index]);
-                            dragon.setPositionPoint(0, 200);
-                            dragon.setPositionPoint(0, 200);
                             dragon.setScaleInScreen(1);
                             bsrGiftView.addBSRPathPointAndDraw(dragon);
                         } else {
@@ -479,15 +479,15 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint = new BSRPathPoint();
         pathPoint.setRes(context, R.drawable.ship02);
         pathPoint.setDuring(during);
-        pathPoint.positionInScreen();
 
+        pathPoint.positionInScreen();
         pathPoint.addPositionControlPoint(0f, 0.4f);
         pathPoint.addPositionControlPoint(0.53f, 0.4f);
         pathPoint.addPositionControlPoint(0.53f, 0.4f);
         pathPoint.addPositionControlPoint(0.53f, 0.4f);
         pathPoint.addPositionControlPoint(0.53f, 0.4f);
-        pathPoint.setPositionPercentX(0.5f);
-        pathPoint.setPositionPercentY(0.5f);
+        pathPoint.setPositionXPercent(0.5f);
+        pathPoint.setPositionYPercent(0.5f);
 
         pathPoint.setScaleInScreen(1);
         pathPoint.addScaleControl(0.3f);

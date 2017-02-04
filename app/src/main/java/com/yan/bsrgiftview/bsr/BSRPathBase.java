@@ -65,11 +65,11 @@ public class BSRPathBase {
         isPositionInScreen = true;
     }
 
-    public void setPositionPercentX(float xPositionPercent) {
+    public void setPositionXPercent(float xPositionPercent) {
         this.xPositionPercent = xPositionPercent;
     }
 
-    public void setPositionPercentY(float yPositionPercent) {
+    public void setPositionYPercent(float yPositionPercent) {
         this.yPositionPercent = yPositionPercent;
     }
 
