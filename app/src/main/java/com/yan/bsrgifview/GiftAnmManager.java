@@ -1,7 +1,6 @@
 package com.yan.bsrgifview;
 
 import android.content.Context;
-import android.graphics.PointF;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
