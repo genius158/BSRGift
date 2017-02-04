@@ -2,7 +2,6 @@ package com.yan.bsrgifview.bsr;
 
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
-import android.util.Log;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -12,9 +11,7 @@ import java.util.List;
  */
 
 public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
-    List<PointF> pointFList;
-    List<Float> scaleList;
-    List<Float> rotationList;
+
 
     @Override
     public BSRPathBase evaluate(float t, BSRPathBase startValue, BSRPathBase endValue) {
@@ -22,32 +19,44 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
             backListener.onValueBack(t);
         }
 
+        List<PointF> pointFList;
+        List<Float> scaleList;
+        List<Float> rotationList;
         pointFList = endValue.getPositionControlPoint();
         rotationList = endValue.getRotationControl();
         scaleList = endValue.getScaleControl();
 
-        if (pointFList.size() >= 2) {
-            BigDecimal b1 = new BigDecimal(deCasteljauX(pointFList.size() - 1, 0, t));
+        if (pointFList != null && pointFList.size() >= 2) {
+            BigDecimal b1 = new BigDecimal(BSRPointValueX(pointFList, pointFList.size() - 1, 0, t));
             float f1 = b1.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-            BigDecimal b2 = new BigDecimal(deCasteljauY(pointFList.size() - 1, 0, t));
+            BigDecimal b2 = new BigDecimal(BSRPointValueY(pointFList, pointFList.size() - 1, 0, t));
             float f2 = b2.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 
-            endValue.setTruePoint(f1, f2);
+            endValue.setTruePositionPoint(f1, f2);
+        } else {
+            endValue.setTruePositionPoint(
+                    endValue.getFirstPositionPoint().x + (endValue.getLastPositionPoint().x - endValue.getFirstPositionPoint().x) * t
+                    , endValue.getFirstPositionPoint().y + (endValue.getLastPositionPoint().y - endValue.getFirstPositionPoint().y) * t
+            );
         }
 
         if (!endValue.isRotationFollow() && rotationList.size() < 2) {
-            endValue.rotation = endValue.getRotation() * t;
+            endValue.trueRotation = endValue.getFirstRotation()
+                    + (endValue.getLastRotation() - endValue.getFirstRotation()) * t;
         } else if (!endValue.isRotationFollow() && rotationList.size() >= 2) {
-            endValue.rotation = (deCasteljauRotation(rotationList.size() - 1, 0, t));
+            endValue.trueRotation = (BSRValue(rotationList, rotationList.size() - 1, 0, t));
         }
 
-        if (scaleList.size() >= 2)
-            endValue.currentScaleValue = (deCasteljauScale(scaleList.size() - 1, 0, t));
+        if (scaleList != null && scaleList.size() >= 2) {
+            endValue.trueScaleValue = (BSRValue(scaleList, scaleList.size() - 1, 0, t));
+        } else if (endValue.getLastScale() != -10000) {
+            endValue.trueScaleValue = endValue.getFirstScale() + (endValue.getLastScale() - endValue.getFirstScale()) * t;
+        }
 
         return endValue;
     }
 
-    OnValueBackListener backListener;
+    private OnValueBackListener backListener;
 
     public void setBackListener(OnValueBackListener backListener) {
         this.backListener = backListener;
@@ -57,49 +66,25 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         void onValueBack(float value);
     }
 
-    /**
-     * deCasteljau算法
-     *
-     * @param i 阶数
-     * @param j 0
-     * @param t 时间
-     * @return
-     */
-    private float deCasteljauX(int i, int j, float t) {
+    private float BSRValue(List<Float> floats, int i, int j, float t) {
         if (i == 1) {
-            return (1 - t) * pointFList.get(j).x + t * pointFList.get(j + 1).x;
+            return (1 - t) * floats.get(j) + t * floats.get(j + 1);
         }
-        return (1 - t) * deCasteljauX(i - 1, j, t) + t * deCasteljauX(i - 1, j + 1, t);
+        return (1 - t) * BSRValue(floats, i - 1, j, t) + t * BSRValue(floats, i - 1, j + 1, t);
     }
 
-
-    /**
-     * deCasteljau算法
-     *
-     * @param i 阶数
-     * @param j 0
-     * @param t 时间
-     * @return
-     */
-    private float deCasteljauY(int i, int j, float t) {
+    private float BSRPointValueX(List<PointF> pointFs, int i, int j, float t) {
         if (i == 1) {
-            return (1 - t) * pointFList.get(j).y + t * pointFList.get(j + 1).y;
+            return (1 - t) * pointFs.get(j).x + t * pointFs.get(j + 1).x;
         }
-        return (1 - t) * deCasteljauY(i - 1, j, t) + t * deCasteljauY(i - 1, j + 1, t);
+        return (1 - t) * BSRPointValueX(pointFs, i - 1, j, t) + t * BSRPointValueX(pointFs, i - 1, j + 1, t);
+
     }
 
-    private float deCasteljauScale(int i, int j, float t) {
+    private float BSRPointValueY(List<PointF> pointFs, int i, int j, float t) {
         if (i == 1) {
-            return (1 - t) * scaleList.get(j) + t * scaleList.get(j + 1);
+            return (1 - t) * pointFs.get(j).y + t * pointFs.get(j + 1).y;
         }
-        return (1 - t) * deCasteljauScale(i - 1, j, t) + t * deCasteljauScale(i - 1, j + 1, t);
+        return (1 - t) * BSRPointValueY(pointFs, i - 1, j, t) + t * BSRPointValueY(pointFs, i - 1, j + 1, t);
     }
-
-    private float deCasteljauRotation(int i, int j, float t) {
-        if (i == 1) {
-            return (1 - t) * rotationList.get(j) + t * rotationList.get(j + 1);
-        }
-        return (1 - t) * deCasteljauRotation(i - 1, j, t) + t * deCasteljauRotation(i - 1, j + 1, t);
-    }
-
 }

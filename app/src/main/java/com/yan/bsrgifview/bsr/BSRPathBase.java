@@ -9,16 +9,24 @@ import java.util.List;
  * Created by yan on 2016/12/8.
  */
 public class BSRPathBase {
-    protected float rotationIn;
     protected List<PointF> positionControlPoint;
     protected List<Float> scaleControl;
     protected List<Float> rotationControl;
-    public float currentScaleValue = -1;
+
     protected int during = 3000;
 
+    protected PointF positionPointFirst;
+    protected PointF positionPointLast;
     public float truePointX;
     public float truePointY;
-    public float rotation = -10000;
+
+    protected float rotationFirst;
+    protected float rotationLast;
+    public float trueRotation = -10000;
+
+    protected float scaleFirst;
+    protected float scaleLast = -10000;
+    public float trueScaleValue = -1;
 
     protected float xPercent = 0.5f;
     protected float yPercent = 0.5f;
@@ -31,9 +39,6 @@ public class BSRPathBase {
 
     protected float delayTime = 0;
 
-    protected float pointXPercent;
-    protected float pointYPercent;
-
     protected boolean pointPercentTrigger = false;
 
     protected boolean isRotationFollow;
@@ -42,8 +47,8 @@ public class BSRPathBase {
         return isRotationFollow;
     }
 
-    public void setRotationFollow(boolean rotationFollow) {
-        isRotationFollow = rotationFollow;
+    public void autoRotation() {
+        isRotationFollow = true;
     }
 
     public void setPointPercentTrigger(boolean pointPercentTrigger) {
@@ -54,12 +59,6 @@ public class BSRPathBase {
         return during;
     }
 
-    public void setPointPercent(float pointXPercent, float pointYPercent) {
-        pointPercentTrigger = true;
-        this.pointXPercent = pointXPercent;
-        this.pointYPercent = pointYPercent;
-    }
-
     public void setXPercent(float xPercent) {
         this.xPercent = xPercent;
     }
@@ -68,12 +67,52 @@ public class BSRPathBase {
         this.yPercent = yPercent;
     }
 
-    public void setRotation(float rotationIn) {
-        this.rotationIn = rotationIn;
+    public void setLastRotation(float rotationLast) {
+        this.rotationLast = rotationLast;
     }
 
-    public float getRotation() {
-        return rotationIn;
+    public void setFirstRotation(float rotationFirst) {
+        this.rotationFirst = rotationFirst;
+    }
+
+    public float getLastRotation() {
+        return this.rotationLast;
+    }
+
+    public float getFirstRotation() {
+        return this.rotationFirst;
+    }
+
+    public PointF getFirstPositionPoint() {
+        return positionPointFirst;
+    }
+
+    public void setFirstPositionPoint(PointF positionPointFirst) {
+        this.positionPointFirst = positionPointFirst;
+    }
+
+    public PointF getLastPositionPoint() {
+        return positionPointLast;
+    }
+
+    public void setLastPositionPoint(PointF positionPointLast) {
+        this.positionPointLast = positionPointLast;
+    }
+
+    public float getFirstScale() {
+        return scaleFirst;
+    }
+
+    public void setFirstScale(float scaleFirst) {
+        this.scaleFirst = scaleFirst;
+    }
+
+    public float getLastScale() {
+        return scaleLast;
+    }
+
+    public void setLastScale(float scaleLast) {
+        this.scaleLast = scaleLast;
     }
 
     public void setDuring(int during) {
@@ -84,6 +123,8 @@ public class BSRPathBase {
         positionControlPoint = new ArrayList<>();
         scaleControl = new ArrayList<>();
         rotationControl = new ArrayList<>();
+        positionPointFirst = new PointF(0, 0);
+        positionPointLast = new PointF(0, 0);
     }
 
     public List<Float> getRotationControl() {
@@ -120,7 +161,7 @@ public class BSRPathBase {
         return scaleControl;
     }
 
-    public void setTruePoint(float x, float y) {
+    public void setTruePositionPoint(float x, float y) {
         truePointX = x;
         truePointY = y;
     }
@@ -142,8 +183,7 @@ public class BSRPathBase {
 
         if (x2 > x1 && y2 < y1) {  //第一象限
             rotation = 90 - tmpDegree;
-        } else if (x2 > x1 && y2 > y1) //第二象限
-        {
+        } else if (x2 > x1 && y2 > y1) {//第二象限
             rotation = 90 + tmpDegree;
         } else if (x2 < x1 && y2 > y1) { //第三象限
             rotation = 270 - tmpDegree;

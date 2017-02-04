@@ -1,6 +1,7 @@
 package com.yan.bsrgifview;
 
 import android.content.Context;
+import android.graphics.PointF;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
@@ -30,7 +31,6 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class GiftAnmManager {
-    private CompositeDisposable mSubscriptions;
 
     private BSRGiftLayout giftLayout;
     private Context context;
@@ -88,7 +88,6 @@ public class GiftAnmManager {
     public GiftAnmManager(BSRGiftLayout giftLayout, Context context) {
         this.context = context;
         this.giftLayout = giftLayout;
-        mSubscriptions = new CompositeDisposable();
     }
 
     public void showCarOne() {
@@ -139,7 +138,7 @@ public class GiftAnmManager {
         bsrPathView.addPositionControlPoint(0, 500);
         bsrPathView.addPositionControlPoint(0, 500);
         bsrPathView.addPositionControlPoint(-1880, 1000);
-        bsrPathView.setRotationFollow(true);
+
         bsrPathView.setDuring(3000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
@@ -205,6 +204,8 @@ public class GiftAnmManager {
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(10f);
+        bsrPathView.setFirstScale(0);
+        bsrPathView.setLastScale(10);
         bsrPathView.setDuring(3000);
         bsrPathView.setInterpolator(new AccelerateInterpolator());
         bsrPathView.addEndListeners(new OnAnmEndListener() {
@@ -225,11 +226,11 @@ public class GiftAnmManager {
             BSRPathPoint bsrPointT = new BSRPathPoint();
 
             if (i == 0)
-                bsrPointT.setRotation(0);
+                bsrPointT.setLastRotation(0);
             else if (i > 0 && i < 7) {
-                bsrPointT.setRotation(i * 20);
+                bsrPointT.setLastRotation(i * 20);
             } else if (i >= 7 && i < 13) {
-                bsrPointT.setRotation(-(i - 6) * 20);
+                bsrPointT.setLastRotation(-(i - 6) * 20);
             }
 
             bsrPointT.addPositionControlPoint(400, 500);

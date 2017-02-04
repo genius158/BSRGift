@@ -2,7 +2,6 @@ package com.yan.bsrgifview.bsr;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +11,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 
-import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
@@ -107,22 +105,22 @@ public class BSRPathPoint extends BSRPathBase {
                                 lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
                             }
 
-                            if (bsrPathBase.rotation == -10000) {
+                            if (bsrPathBase.trueRotation == -10000) {
                                 degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, bsrPathBase.truePointX, bsrPathBase.truePointY);
                             }
 
                             matrix.setTranslate(bsrPathBase.truePointX, bsrPathBase.truePointY);
                         }
-                        if (bsrPathBase.currentScaleValue != -1) {
-                            matrix.preScale(bsrPathBase.currentScaleValue, bsrPathBase.currentScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
+                        if (bsrPathBase.trueScaleValue != -1) {
+                            matrix.preScale(bsrPathBase.trueScaleValue, bsrPathBase.trueScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
                         }
 
-                        if (bsrPathBase.rotation == -10000) {
+                        if (bsrPathBase.trueRotation == -10000) {
                             matrix.preRotate(degree, res.getWidth() * xPercent, res.getHeight() * yPercent);
                             if (lastPoint != null)
                                 lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
                         } else {
-                            matrix.preRotate(bsrPathBase.rotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
+                            matrix.preRotate(bsrPathBase.trueRotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
                         }
                     }
                 }
