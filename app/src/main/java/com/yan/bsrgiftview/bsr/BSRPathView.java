@@ -1,10 +1,9 @@
-package com.yan.bsrgifview.bsr;
+package com.yan.bsrgiftview.bsr;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -72,7 +71,7 @@ public class BSRPathView extends BSRPathBase {
                 view.setPivotX(xPercent * view.getWidth());
                 view.setPivotY(yPercent * view.getHeight());
 
-                if ()
+
                 view.setX(truePointX - view.getWidth() * xPositionPercent);
                 view.setY(truePointY - view.getHeight() * yPositionPercent);
 

@@ -1,4 +1,4 @@
-package com.yan.bsrgifview;
+package com.yan.bsrgiftview;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

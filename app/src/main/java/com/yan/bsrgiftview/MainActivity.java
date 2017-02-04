@@ -1,11 +1,13 @@
-package com.yan.bsrgifview;
+package com.yan.bsrgiftview;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.yan.bsrgifview.bsr.BSRGiftLayout;
-import com.yan.bsrgifview.bsr.BSRGiftView;
+
+import com.yan.bsrgiftview.bsr.BSRGiftLayout;
+import com.yan.bsrgiftview.bsr.BSRGiftView;
+
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,17 +1,17 @@
-package com.yan.bsrgifview;
+package com.yan.bsrgiftview;
 
 import android.content.Context;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.yan.bsrgifview.bsr.BSRGiftLayout;
-import com.yan.bsrgifview.bsr.BSRGiftView;
-import com.yan.bsrgifview.bsr.BSRPathBase;
-import com.yan.bsrgifview.bsr.BSRPathPoint;
-import com.yan.bsrgifview.bsr.BSRPathView;
-import com.yan.bsrgifview.bsr.OnAnmEndListener;
-import com.yan.bsrgifview.bsr.SizeUtils;
+import com.yan.bsrgiftview.bsr.BSRGiftView;
+import com.yan.bsrgiftview.bsr.BSRGiftLayout;
+import com.yan.bsrgiftview.bsr.BSRPathBase;
+import com.yan.bsrgiftview.bsr.BSRPathPoint;
+import com.yan.bsrgiftview.bsr.BSRPathView;
+import com.yan.bsrgiftview.bsr.OnAnmEndListener;
+import com.yan.bsrgiftview.bsr.SizeUtils;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;

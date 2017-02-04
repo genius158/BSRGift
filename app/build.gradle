@@ -2,9 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "25.0.0"
+    buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "com.yan.bsrgifview"
+        applicationId "com.yan.bsrgiftview"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1

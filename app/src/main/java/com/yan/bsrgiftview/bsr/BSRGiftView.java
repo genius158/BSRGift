@@ -1,4 +1,4 @@
-package com.yan.bsrgifview.bsr;
+package com.yan.bsrgiftview.bsr;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

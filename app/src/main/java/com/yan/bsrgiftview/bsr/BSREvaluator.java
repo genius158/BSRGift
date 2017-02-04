@@ -1,8 +1,7 @@
-package com.yan.bsrgifview.bsr;
+package com.yan.bsrgiftview.bsr;
 
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
-import android.util.Log;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

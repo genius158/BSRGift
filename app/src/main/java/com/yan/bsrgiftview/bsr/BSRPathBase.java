@@ -1,4 +1,4 @@
-package com.yan.bsrgifview.bsr;
+package com.yan.bsrgiftview.bsr;
 
 import android.graphics.PointF;
 

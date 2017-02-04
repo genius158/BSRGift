@@ -1,4 +1,4 @@
-package com.yan.bsrgifview;
+package com.yan.bsrgiftview;
 
 import java.io.Serializable;
 
