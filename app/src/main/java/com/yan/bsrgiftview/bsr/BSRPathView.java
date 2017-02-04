@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
+import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -64,24 +65,39 @@ public class BSRPathView extends BSRPathBase {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
                 screenWidth = bsrGiftLayout.getMeasuredWidth();
-                screenHeight = bsrGiftLayout.getMeasuredWidth();
+                screenHeight = bsrGiftLayout.getMeasuredHeight();
 
-                float timesWidth = screenWidth / view.getWidth();
-                float timesHeight = screenHeight / view.getHeight();
+                float timesWidth = screenWidth / (float) view.getMeasuredWidth();
+                float timesHeight = screenHeight / (float) view.getMeasuredHeight();
 
                 view.setPivotX(xPercent * view.getWidth());
                 view.setPivotY(yPercent * view.getHeight());
 
-                view.setX(truePointX - view.getWidth() * xPositionPercent);
-                view.setY(truePointY - view.getHeight() * yPositionPercent);
+                float tempScale = 1;
 
-//                Log.e("truePoint", (truePointX - view.getWidth() * xPositionPercent) + " " + (truePointY - view.getHeight() * yPositionPercent));
-
-                if (trueScaleValue != -1) {
-                    view.setScaleX(trueScaleValue);
-                    view.setScaleY(trueScaleValue);
+                if (isCenterInside) {
+                    if (timesWidth > timesHeight) {
+                        tempScale = timesHeight * scaleInScreen;
+                        view.setX(screenWidth - view.getWidth() * timesHeight * scaleInScreen / 2);
+                    } else {
+                        tempScale = timesWidth * scaleInScreen;
+                        view.setY(screenHeight - view.getHeight() * timesWidth * scaleInScreen / 2);
+                    }
+                } else if (scaleInScreen != -10000) {
+                    if (timesWidth > timesHeight) {
+                        tempScale = timesHeight * scaleInScreen;
+                    } else {
+                        tempScale = timesWidth * scaleInScreen;
+                    }
                 }
-//                Log.e("trueScaleValue", trueScaleValue + " ");
+
+                if (!isCenterInside) {
+                    view.setX(truePointX - view.getWidth() * xPositionPercent);
+                    view.setY(truePointY - view.getHeight() * yPositionPercent);
+                }
+
+                view.setScaleX(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
+                view.setScaleY(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
 
                 if (trueRotation == -10000) {
                     if (lastPoint == null) {

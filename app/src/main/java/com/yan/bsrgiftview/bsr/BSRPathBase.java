@@ -1,6 +1,7 @@
 package com.yan.bsrgiftview.bsr;
 
 import android.graphics.PointF;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -222,26 +223,28 @@ public class BSRPathBase {
         return delayTime;
     }
 
-    public static float getRotationPoint2Point(float x1, float y1, float x2, float y2) {
-        double rotation = 0;
+    private double rotationPoint2Point;
 
+    public float getRotationPoint2Point(float x1, float y1, float x2, float y2) {
         double k1 = 0;//(double) (y1 - y1) / (x1 * 2 - x1)
         double k2 = (double) (y2 - y1) / (x2 - x1);
         double tmpDegree = Math.atan((Math.abs(k1 - k2)) / (1 + k1 * k2)) / Math.PI * 180;
 
         if (x2 > x1 && y2 < y1) {  //第一象限
-            rotation = 90 - tmpDegree;
+            rotationPoint2Point = 90 - tmpDegree;
         } else if (x2 > x1 && y2 > y1) {//第二象限
-            rotation = 90 + tmpDegree;
+            rotationPoint2Point = 90 + tmpDegree;
         } else if (x2 < x1 && y2 > y1) { //第三象限
-            rotation = 270 - tmpDegree;
+            rotationPoint2Point = 270 - tmpDegree;
         } else if (x2 < x1 && y2 < y1) { //第四象限
-            rotation = 270 + tmpDegree;
+            rotationPoint2Point = 270 + tmpDegree;
         } else if (x2 == x1 && y2 < y1) {
-            rotation = 0;
+            rotationPoint2Point = 0;
         } else if (x2 == x1 && y2 > y1) {
-            rotation = 180;
+            rotationPoint2Point = 180;
+        } else if (x1 == x1 && y2 == y2) {
         }
-        return (float) rotation;
+
+        return (float) rotationPoint2Point;
     }
 }

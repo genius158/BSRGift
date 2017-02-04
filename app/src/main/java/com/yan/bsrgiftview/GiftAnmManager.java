@@ -291,8 +291,7 @@ public class GiftAnmManager {
             bsrPointT.setDuring(during);
             bsrPointT.setXPercent(0.5f);
             bsrPointT.setYPercent(1.0f);
-            bsrPointT.addScaleControl(0.5f);
-            bsrPointT.addScaleControl(0.5f);
+            bsrPointT.setScale(0.5f);
             bsrPointT.setAntiAlias(true);
             bsrPointT.setInterpolator(new DecelerateInterpolator());
             bsrPathPoints.add(bsrPointT);
@@ -329,12 +328,13 @@ public class GiftAnmManager {
         bsrPoint.addPositionControlPoint(0f, 0f);
         bsrPoint.addPositionControlPoint(1f, 0f);
         bsrPoint.addPositionControlPoint(1f, 1f);
-        bsrPoint.setScale(0.3f);
+        bsrPoint.setScaleInScreen(1f);
+        bsrPoint.setScale(0.4f);
         bsrPoint.addPositionControlPoint(0f, 1f);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
         bsrPoint.setAntiAlias(true);
         bsrPoint.setPositionPercentX(0.5f);
-        bsrPoint.setPositionPercentY(0.5f);
+        bsrPoint.setPositionPercentY(0f);
         bsrPathPoints.add(bsrPoint);
 
         BSRPathView bsrPathView = new BSRPathView();
