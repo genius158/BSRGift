@@ -2,8 +2,10 @@ package com.yan.bsrgifview.bsr;
 
 import android.animation.TypeEvaluator;
 import android.graphics.PointF;
+import android.util.Log;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,18 +20,27 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         if (backListener != null) {
             backListener.onValueBack(t);
         }
-
-        List<PointF> pointFList;
+        List<PointF> pointPositionFList;
         List<Float> scaleList;
         List<Float> rotationList;
-        pointFList = endValue.getPositionControlPoint();
+        if (endValue.isPositionInScreen()) {
+            pointPositionFList = new ArrayList<>();
+            for (PointF pointF : endValue.getPositionControlPoint()) {
+                pointPositionFList.add(new PointF(pointF.x * endValue.screenWidth, pointF.y * endValue.screenHeight));
+            }
+        } else {
+            pointPositionFList = endValue.getPositionControlPoint();
+        }
+
         rotationList = endValue.getRotationControl();
         scaleList = endValue.getScaleControl();
 
-        if (pointFList != null && pointFList.size() >= 2) {
-            BigDecimal b1 = new BigDecimal(BSRPointValueX(pointFList, pointFList.size() - 1, 0, t));
+        if (pointPositionFList != null && pointPositionFList.size() >= 2) {
+            BigDecimal b1 = new BigDecimal(
+                    BSRPointValueX(pointPositionFList, pointPositionFList.size() - 1, 0, t)
+            );
             float f1 = b1.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
-            BigDecimal b2 = new BigDecimal(BSRPointValueY(pointFList, pointFList.size() - 1, 0, t));
+            BigDecimal b2 = new BigDecimal(BSRPointValueY(pointPositionFList, pointPositionFList.size() - 1, 0, t));
             float f2 = b2.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
 
             endValue.setTruePositionPoint(f1, f2);

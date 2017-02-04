@@ -66,6 +66,8 @@ public class BSRPathPoint extends BSRPathBase {
     }
 
     public void drawBSRPoint(Canvas canvas, float viewWidth, float viewHeight, boolean isFrameAnimation) {
+        screenWidth = viewWidth;
+        screenHeight = viewHeight;
         if (isFrameAnimation) {
             if (scaleInScreen != -10000) {
                 float timesWidth = viewWidth / getRes().getWidth();
@@ -83,15 +85,63 @@ public class BSRPathPoint extends BSRPathBase {
             canvas.drawBitmap(res, matrix, paint);
 
         } else {
-            if (scaleInScreen != -10000) {
-                float timesWidth = viewWidth / getRes().getWidth();
-                float timesHeight = viewHeight / getRes().getHeight();
+            float timesWidth = viewWidth / getRes().getWidth();
+            float timesHeight = viewHeight / getRes().getHeight();
+
+            float degree = 0;
+
+            if (attachPathBase != null) {
+                matrix.set(((BSRPathPoint) attachPathBase).getMatrix());
+                matrix.preTranslate(attachDx, attachDy);
+            } else {
+                if (trueRotation == -10000) {
+                    if (lastPoint == null) {
+                        lastPoint = new PointF();
+                        lastPoint.set(truePointX, truePointY);
+                    }
+                    degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, truePointX, truePointY);
+                }
+
+                if (isCenterInside) {
+                    if (timesWidth > timesHeight) {
+                        matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
+                        matrix.preTranslate((viewWidth - getRes().getWidth() * timesHeight * scaleInScreen) / 2, 0);
+                    } else {
+                        matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
+                        matrix.preTranslate(0, (viewHeight - getRes().getHeight() * timesWidth * scaleInScreen) / 2);
+                    }
+                } else {
+                    matrix.setTranslate(
+                            truePointX - ((scaleInScreen != -10000)
+                                    ? getRes().getWidth() * timesHeight * scaleInScreen * xPositionPercent
+                                    : getRes().getWidth()) * xPositionPercent
+                            , truePointY - ((scaleInScreen != -10000)
+                                    ? getRes().getHeight() * timesWidth * scaleInScreen * yPositionPercent
+                                    : getRes().getHeight()) * yPositionPercent
+                    );
+                }
+            }
+
+            if (!isCenterInside && scaleInScreen != -10000) {
                 if (timesWidth > timesHeight) {
                     matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
                 } else {
                     matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
                 }
             }
+
+            if (!isCenterInside && trueScaleValue != -1) {
+                matrix.preScale(trueScaleValue, trueScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
+            }
+
+            if (trueRotation == -10000) {
+                matrix.preRotate(degree + getFirstRotation(), res.getWidth() * xPercent, res.getHeight() * yPercent);
+                if (lastPoint != null)
+                    lastPoint.set(truePointX, truePointY);
+            } else {
+                matrix.preRotate(trueRotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
+            }
+
             if (canDraw) {
                 canvas.drawBitmap(res, matrix, paint);
             }
@@ -117,40 +167,6 @@ public class BSRPathPoint extends BSRPathBase {
         final ValueAnimator anim = ValueAnimator.ofObject(bsrEvaluator, this);
         anim.setInterpolator((interpolator == null ? new AccelerateDecelerateInterpolator() : interpolator));
         anim.setDuration(during);
-        anim.addUpdateListener(
-                new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        BSRPathBase bsrPathBase = (BSRPathBase) animation.getAnimatedValue();
-
-                        float degree = 0;
-                        if (attachPathBase != null) {
-                            matrix.set(((BSRPathPoint) attachPathBase).getMatrix());
-                            matrix.preTranslate(attachDx, attachDy);
-                        } else {
-                            if (lastPoint == null) {
-                                lastPoint = new PointF();
-                                lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
-                            }
-                            if (bsrPathBase.trueRotation == -10000) {
-                                degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, bsrPathBase.truePointX, bsrPathBase.truePointY);
-                            }
-                            matrix.setTranslate(bsrPathBase.truePointX, bsrPathBase.truePointY);
-                        }
-                        if (bsrPathBase.trueScaleValue != -1) {
-                            matrix.preScale(bsrPathBase.trueScaleValue, bsrPathBase.trueScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
-                        }
-
-                        if (bsrPathBase.trueRotation == -10000) {
-                            matrix.preRotate(degree, res.getWidth() * xPercent, res.getHeight() * yPercent);
-                            if (lastPoint != null)
-                                lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
-                        } else {
-                            matrix.preRotate(bsrPathBase.trueRotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
-                        }
-                    }
-                }
-        );
 
         anim.addListener(
                 new AnimatorListenerAdapter() {

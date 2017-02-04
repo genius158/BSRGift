@@ -23,6 +23,7 @@ public class BSRGiftLayout extends FrameLayout {
 
     public void addChild(BSRPathView bsrPathView) {
         addView(bsrPathView.getChild());
+        bsrPathView.attachParent(this);
         startDrawAnimation(bsrPathView);
     }
 

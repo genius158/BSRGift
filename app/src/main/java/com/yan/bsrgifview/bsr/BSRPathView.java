@@ -19,7 +19,7 @@ public class BSRPathView extends BSRPathBase {
     private View view;
     private BSREvaluator.OnValueBackListener backListener;
     private List<OnAnmEndListener> endListeners;
-
+    private BSRGiftLayout bsrGiftLayout;
     private Interpolator interpolator;
 
     public void setChild(View child) {
@@ -33,6 +33,7 @@ public class BSRPathView extends BSRPathBase {
     public BSRPathView() {
         super();
         endListeners = new ArrayList<>();
+
     }
 
     public void setInterpolator(Interpolator interpolator) {
@@ -62,28 +63,30 @@ public class BSRPathView extends BSRPathBase {
         anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                BSRPathBase bsrPathBase = (BSRPathBase) animation.getAnimatedValue();
-                view.setPivotX(bsrPathBase.xPercent * view.getWidth());
-                view.setPivotY(bsrPathBase.yPercent * view.getHeight());
+                screenWidth = bsrGiftLayout.getMeasuredWidth();
+                screenHeight = bsrGiftLayout.getMeasuredWidth();
 
-                view.setX(bsrPathBase.truePointX);
-                view.setY(bsrPathBase.truePointY);
+                view.setPivotX(xPercent * view.getWidth());
+                view.setPivotY(yPercent * view.getHeight());
 
-                if (bsrPathBase.trueScaleValue != -1) {
-                    view.setScaleX(bsrPathBase.trueScaleValue);
-                    view.setScaleY(bsrPathBase.trueScaleValue);
+                view.setX(truePointX - view.getWidth() * xPositionPercent);
+                view.setY(truePointY - view.getHeight() * yPositionPercent);
+
+                if (trueScaleValue != -1) {
+                    view.setScaleX(trueScaleValue);
+                    view.setScaleY(trueScaleValue);
                 }
-                if (bsrPathBase.trueRotation == -10000) {
+                if (trueRotation == -10000) {
                     if (lastPoint == null) {
                         lastPoint = new PointF();
-                        lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
+                        lastPoint.set(truePointX, truePointY);
                     }
-                    float degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, bsrPathBase.truePointX, bsrPathBase.truePointY);
-                    view.setRotation(degree + bsrPathBase.getFirstRotation());
+                    float degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, truePointX, truePointY);
+                    view.setRotation(degree + getFirstRotation());
 
-                    lastPoint.set(bsrPathBase.truePointX, bsrPathBase.truePointY);
+                    lastPoint.set(truePointX, truePointY);
                 } else {
-                    view.setRotation(bsrPathBase.trueRotation);
+                    view.setRotation(trueRotation);
                 }
 
                 if (onAnimationStartListener != null) {
@@ -110,6 +113,10 @@ public class BSRPathView extends BSRPathBase {
 
     public void setOnAnimationStartListener(OnAnimationStartListener onAnimationStartListener) {
         this.onAnimationStartListener = onAnimationStartListener;
+    }
+
+    public void attachParent(BSRGiftLayout bsrGiftLayout) {
+        this.bsrGiftLayout = bsrGiftLayout;
     }
 
     public interface OnAnimationStartListener {

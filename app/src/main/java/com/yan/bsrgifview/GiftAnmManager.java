@@ -114,7 +114,7 @@ public class GiftAnmManager {
                         carOne.setRes(context, car1Ids[index++ % 7]);
                         carOne.addPositionControlPoint(0, 0);
                         carOne.addPositionControlPoint(0, 0);
-                        carOne.setScaleInScreen(1);
+                        carOne.setScaleInScreen(0.8f);
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
                     }
@@ -129,12 +129,12 @@ public class GiftAnmManager {
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
         bsrPathView.addPositionControlPoint(1080, 0);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
-        bsrPathView.addPositionControlPoint(0, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
+        bsrPathView.addPositionControlPoint(100, 500);
         bsrPathView.addPositionControlPoint(-1880, 1000);
 
         bsrPathView.setDuring(3000);
@@ -188,10 +188,11 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.addPositionControlPoint(-100, -500);
-        bsrPathView.addPositionControlPoint(1000, 400);
-        bsrPathView.addPositionControlPoint(-200, 800);
-        bsrPathView.addPositionControlPoint(-600, -200);
+        bsrPathView.positionInScreen();
+        bsrPathView.addPositionControlPoint(-0.5f, -0.5f);
+        bsrPathView.addPositionControlPoint(-0.5f, 0.5f);
+        bsrPathView.addPositionControlPoint(0.5f, 0.5f);
+        bsrPathView.addPositionControlPoint(0.5f, -0.5f);
         bsrPathView.setScale(0.3f);
         bsrPathView.setFirstRotation(90);
         bsrPathView.autoRotation();
@@ -230,7 +231,7 @@ public class GiftAnmManager {
                         carTwo.setDuring(during);
                         carTwo.setInterpolator(new LinearInterpolator());
                         carTwo.setRes(context, car2Ids[index++ % 2]);
-                        carTwo.setScaleInScreen(1);
+                        carTwo.setScaleInScreen(0.8f);
                         carTwo.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carTwo);
                     }
@@ -248,7 +249,7 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.setPositionPoint(0, 500);
+        bsrPathView.setPositionPoint(50, 500);
         bsrPathView.addScaleControl(0.2f);
         bsrPathView.addScaleControl(1.0f);
         bsrPathView.addScaleControl(1.0f);
@@ -313,6 +314,37 @@ public class GiftAnmManager {
         bsrGiftView.addBSRPathPoints(bsrPathPoints);
     }
 
+    public void showPositionInScreen() {
+        final BSRGiftView bsrGiftView = new BSRGiftView(context);
+        int during = 2000;
+        bsrGiftView.setAlphaTrigger(0.99f);
+        final List<BSRPathPoint> bsrPathPoints = new ArrayList<>();
+
+        BSRPathPoint bsrPoint = new BSRPathPoint();
+        bsrPoint.setRes(context, R.drawable.gift_car_t2);
+        bsrPoint.setDuring(during);
+        bsrPoint.positionInScreen();
+        bsrPoint.setFirstRotation(-90);
+        bsrPoint.autoRotation();
+        bsrPoint.addPositionControlPoint(0f, 0f);
+        bsrPoint.addPositionControlPoint(1f, 0f);
+        bsrPoint.addPositionControlPoint(1f, 1f);
+        bsrPoint.setScale(0.3f);
+        bsrPoint.addPositionControlPoint(0f, 1f);
+        bsrPoint.setInterpolator(new DecelerateInterpolator());
+        bsrPoint.setAntiAlias(true);
+        bsrPoint.setPositionPercentX(0.5f);
+        bsrPoint.setPositionPercentY(0.5f);
+        bsrPathPoints.add(bsrPoint);
+
+        BSRPathView bsrPathView = new BSRPathView();
+        bsrPathView.setChild(bsrGiftView);
+        bsrPathView.setDuring(during * 2);
+
+        giftLayout.addChild(bsrPathView);
+        bsrGiftView.addBSRPathPoints(bsrPathPoints);
+    }
+
     public void showDragon() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);
         final int during = 60;
@@ -353,7 +385,7 @@ public class GiftAnmManager {
                 });
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.setDuring(2000*2);
+        bsrPathView.setDuring(2000 * 2);
         giftLayout.setAlphaTrigger(0.99f);
         giftLayout.addChild(bsrPathView);
     }

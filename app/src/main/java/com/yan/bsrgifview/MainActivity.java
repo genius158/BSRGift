@@ -26,12 +26,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                switch (time++ % 7) {
+                switch (time++ % 8) {
                     case 0:
                         giftAnmManager.showKiss();
-                        break;
-                    case 5:
-                        giftAnmManager.showShip();
                         break;
                     case 1:
                         giftAnmManager.showCarTwo();
@@ -45,9 +42,16 @@ public class MainActivity extends AppCompatActivity {
                     case 4:
                         giftAnmManager.showCarOne();
                         break;
+                    case 5:
+                        giftAnmManager.showShip();
+                        break;
                     case 6:
                         giftAnmManager.showCarOnePath();
                         break;
+                    case 7:
+                        giftAnmManager.showPositionInScreen();
+                        break;
+
                 }
             }
         });

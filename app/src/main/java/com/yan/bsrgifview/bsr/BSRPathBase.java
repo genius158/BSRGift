@@ -31,6 +31,9 @@ public class BSRPathBase {
     protected float xPercent = 0.5f;
     protected float yPercent = 0.5f;
 
+    protected float xPositionPercent = 0.0f;
+    protected float yPositionPercent = 0.0f;
+
     protected BSRPathBase attachPathBase;
     protected float attachDx = 0;
     protected float attachDy = 0;
@@ -42,6 +45,27 @@ public class BSRPathBase {
     protected boolean pointPercentTrigger = false;
 
     protected boolean isAutoRotation;
+
+    protected boolean isPositionInScreen = false;
+
+    public float screenWidth = -10000;
+    public float screenHeight = -10000;
+
+    public void positionInScreen() {
+        isPositionInScreen = true;
+    }
+
+    public void setPositionPercentX(float xPositionPercent) {
+        this.xPositionPercent = xPositionPercent;
+    }
+
+    public void setPositionPercentY(float yPositionPercent) {
+        this.yPositionPercent = yPositionPercent;
+    }
+
+    public boolean isPositionInScreen() {
+        return isPositionInScreen;
+    }
 
     public boolean isAutoRotation() {
         return isAutoRotation;
