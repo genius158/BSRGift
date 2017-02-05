@@ -281,8 +281,8 @@ public class GiftAnmManager {
 
     public void showKQ() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);
-        int during = 1000;
-        bsrGiftView.setAlphaTrigger(0.99f);
+        int during = 1200;
+        bsrGiftView.setAlphaTrigger(1);
         final List<BSRPathPoint> bsrPathPoints = new ArrayList<>();
         for (int i = 0; i < 13; i++) {
             BSRPathPoint bsrPointT = new BSRPathPoint();
