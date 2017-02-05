@@ -5,7 +5,7 @@
 ## 1.概述
 直播项目的礼物模块，实现一些基本的礼物动画，随着项目的深入，BSR也将会继续完善
 
-## 2.用法 详见[GiftAnmManager.java](https://github.com/genius158/BSRGift/blob/master/app/src/main/java/com/yan/bsrgiftview/GiftAnmManager.java)
+## 2.用法 详见[GiftAnmManager.java](https://github.com/genius158/BSRGift/blob/master/app/src/main/java/com/yan/bsrgiftview/GiftAnmManager.java)(资源文件切勿用于商业用途)
 **BSR提供BSRGiftView、和BSRGiftLayout两个控件**
 <br>
 <br>
@@ -39,5 +39,3 @@ bsr.addScaleControl(0.5f);// 添加缩放的控制点用于贝塞尔效果
 bsr.addRotationControl(30);// 添加旋转的控制点用于贝塞尔效果
 bsr.addPositionControlPoint(200);// 添加位移的控制点用于贝塞尔效果，如果调用positionInScreen()，填入的参数为相对父View界面的比例值
 ```
-
-### 资源文件切勿用于商业用途
