@@ -11,12 +11,8 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 
-import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yan on 2016/12/8.
@@ -27,14 +23,12 @@ public class BSRPathPoint extends BSRPathBase {
     private Matrix matrix;
     private Interpolator interpolator;
 
-    private List<OnAnmEndListener> endListeners;
     private BSREvaluator.OnValueBackListener backListener;
 
     public BSRPathPoint() {
         super();
         paint = new Paint();
         matrix = new Matrix();
-        endListeners = new ArrayList<>();
     }
 
     public void setInterpolator(Interpolator interpolator) {
@@ -75,8 +69,6 @@ public class BSRPathPoint extends BSRPathBase {
         } else {
             float timesWidth = viewWidth / res.getWidth();
             float timesHeight = viewHeight / res.getHeight();
-
-            float finalTimes = Math.min(timesHeight, timesWidth);
 
             float degree = 0;
 

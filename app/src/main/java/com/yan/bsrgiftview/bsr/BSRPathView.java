@@ -4,13 +4,10 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
-import android.util.Log;
+
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by yan on 2016/12/8.
@@ -18,7 +15,6 @@ import java.util.List;
 public class BSRPathView extends BSRPathBase {
     private View view;
     private BSREvaluator.OnValueBackListener backListener;
-    private List<OnAnmEndListener> endListeners;
     private BSRGiftLayout bsrGiftLayout;
     private Interpolator interpolator;
 
@@ -32,7 +28,6 @@ public class BSRPathView extends BSRPathBase {
 
     public BSRPathView() {
         super();
-        endListeners = new ArrayList<>();
 
     }
 

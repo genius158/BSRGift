@@ -50,6 +50,8 @@ public class BSRPathBase {
 
     protected float scaleInScreen = -10000;
     protected boolean isCenterInside = false;
+    protected List<OnAnmEndListener> endListeners;
+
 
     public void adjustScaleInScreen(float scaleInScreen) {
         this.scaleInScreen = scaleInScreen;
@@ -173,6 +175,7 @@ public class BSRPathBase {
         rotationControl = new ArrayList<>();
         positionPointFirst = new PointF(0, 0);
         positionPointLast = new PointF(0, 0);
+        endListeners = new ArrayList<>();
     }
 
     public List<Float> getRotationControl() {
