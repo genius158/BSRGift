@@ -11,7 +11,6 @@ import com.yan.bsrgiftview.bsr.BSRPathBase;
 import com.yan.bsrgiftview.bsr.BSRPathPoint;
 import com.yan.bsrgiftview.bsr.BSRPathView;
 import com.yan.bsrgiftview.bsr.OnAnmEndListener;
-import com.yan.bsrgiftview.bsr.SizeUtils;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -91,7 +90,7 @@ public class GiftAnmManager {
     public void showCarOne() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);
         bsrGiftView.setAlphaTrigger(-1);
-        bsrGiftView.offsetTopAndBottom(SizeUtils.dp2px(context, 100));
+
         final int during = 150;
         final Subscription[] subscription = new Subscription[1];
 
@@ -150,7 +149,6 @@ public class GiftAnmManager {
     public void showCarOnePath() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);
         bsrGiftView.setAlphaTrigger(-1);
-        bsrGiftView.offsetTopAndBottom(SizeUtils.dp2px(context, 100));
         final int during = 150;
         final Subscription[] subscription = new Subscription[1];
 
@@ -211,7 +209,6 @@ public class GiftAnmManager {
     public void showCarTwo() {
         final BSRGiftView bsrGiftView = new BSRGiftView(context);
         bsrGiftView.setAlphaTrigger(-1);
-        bsrGiftView.offsetTopAndBottom(SizeUtils.dp2px(context, 100));
         final int during = 300;
         final Subscription[] subscription = new Subscription[1];
         Flowable.interval(during, TimeUnit.MILLISECONDS)
