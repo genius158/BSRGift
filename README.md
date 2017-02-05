@@ -40,3 +40,5 @@ bsr.addPositionControlPoint(200);// 添加位移的控制点用于贝塞尔效�
 
 
 ```
+
+### 资源文件切勿用于商业用途
