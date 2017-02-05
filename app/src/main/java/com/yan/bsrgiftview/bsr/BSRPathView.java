@@ -88,8 +88,13 @@ public class BSRPathView extends BSRPathBase {
                 }
 
                 if (!isCenterInside) {
-                    view.setX(truePointX - view.getWidth() * xPositionPercent);
-                    view.setY(truePointY - view.getHeight() * yPositionPercent);
+                    if (attachPathBase != null) {
+                        view.setX(attachPathBase.truePointX + attachPathBase.attachDx);
+                        view.setY(attachPathBase.truePointY + attachPathBase.attachDy);
+                    } else {
+                        view.setX(truePointX - view.getWidth() * xPositionPercent);
+                        view.setY(truePointY - view.getHeight() * yPositionPercent);
+                    }
 
                     view.setScaleX(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
                     view.setScaleY(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
