@@ -51,7 +51,7 @@ public class BSRPathBase {
     protected float scaleInScreen = -10000;
     protected boolean isCenterInside = false;
 
-    public void setScaleInScreen(float scaleInScreen) {
+    public void adjustScaleInScreen(float scaleInScreen) {
         this.scaleInScreen = scaleInScreen;
     }
 

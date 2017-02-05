@@ -11,6 +11,7 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PointF;
 
+import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
@@ -48,36 +49,34 @@ public class BSRPathPoint extends BSRPathBase {
         paint.setAntiAlias(isAlias);
     }
 
-    public Bitmap getRes() {
-        return res;
-    }
-
     public void drawBSRPoint(Canvas canvas, float viewWidth, float viewHeight, boolean isFrameAnimation) {
         screenWidth = viewWidth;
         screenHeight = viewHeight;
         if (isFrameAnimation) {
             if (scaleInScreen != -10000) {
-                float timesWidth = viewWidth / getRes().getWidth();
-                float timesHeight = viewHeight / getRes().getHeight();
+                float timesWidth = viewWidth / res.getWidth();
+                float timesHeight = viewHeight / res.getHeight();
                 if (timesWidth >= timesHeight) {
                     matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
                     if (isCenterInside)
-                        matrix.preTranslate((viewWidth - getRes().getWidth()) / 2, 0);
+                        matrix.preTranslate((viewWidth - res.getWidth() * timesHeight) / 2, 0);
                     else
-                        matrix.preTranslate(0, (viewHeight - getRes().getHeight() * timesHeight * scaleInScreen) / 2);
+                        matrix.preTranslate(0, (viewHeight - res.getHeight() * timesHeight * scaleInScreen) / 2);
                 } else {
                     matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
                     if (isCenterInside)
-                        matrix.preTranslate(0, (viewHeight - getRes().getHeight()) / 2);
+                        matrix.preTranslate(0, (viewHeight - res.getHeight() * timesWidth) / 2);
                     else
-                        matrix.preTranslate((viewWidth - getRes().getWidth() * timesWidth * scaleInScreen) / 2, 0);
+                        matrix.preTranslate((viewWidth - res.getWidth() * timesWidth * scaleInScreen) / 2, 0);
                 }
             }
             canvas.drawBitmap(res, matrix, paint);
 
         } else {
-            float timesWidth = viewWidth / getRes().getWidth();
-            float timesHeight = viewHeight / getRes().getHeight();
+            float timesWidth = viewWidth / res.getWidth();
+            float timesHeight = viewHeight / res.getHeight();
+
+            float finalTimes = Math.min(timesHeight, timesWidth);
 
             float degree = 0;
 
@@ -95,16 +94,16 @@ public class BSRPathPoint extends BSRPathBase {
 
                 if (isCenterInside) {
                     if (timesWidth > timesHeight) {
-                        matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
-                        matrix.preTranslate((viewWidth - getRes().getWidth() ) / 2, 0);
+                        matrix.setTranslate((viewWidth) / 2, 0);
+                        matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
                     } else {
-                        matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
-                        matrix.preTranslate(0, (viewHeight - getRes().getHeight() ) / 2);
+                        matrix.setTranslate(0, (viewHeight / 2));
+                        matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
                     }
                 } else {
                     matrix.setTranslate(
-                            truePointX - (getRes().getWidth() * xPositionPercent)
-                            , truePointY - (getRes().getHeight() * yPositionPercent)
+                            truePointX - res.getWidth() * xPositionPercent
+                            , truePointY - res.getHeight() * yPositionPercent
                     );
                 }
             }

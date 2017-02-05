@@ -4,7 +4,6 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -79,7 +78,7 @@ public class BSRPathView extends BSRPathBase {
                     if (timesWidth > timesHeight) {
                         view.setScaleX(timesHeight);
                         view.setScaleY(timesHeight);
-                        view.setX((screenWidth - view.getWidth() * timesHeight * scaleInScreen )/ 2);
+                        view.setX((screenWidth - view.getWidth() * timesHeight * scaleInScreen) / 2);
                     } else {
                         view.setScaleX(timesWidth);
                         view.setScaleY(timesWidth);
