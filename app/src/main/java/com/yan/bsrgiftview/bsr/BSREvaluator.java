@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2016/12/7.
+ * Created by yan on 2016/12/7.
  */
 
 public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
