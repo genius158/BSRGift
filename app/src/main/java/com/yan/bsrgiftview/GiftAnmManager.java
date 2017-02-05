@@ -476,7 +476,7 @@ public class GiftAnmManager {
         List<BSRPathPoint> bsrPathPoints = new ArrayList<>();
 
         BSRPathPoint pathPoint = new BSRPathPoint();
-        pathPoint.setRes(context, R.drawable.kiss_xin);
+        pathPoint.setRes(context, R.drawable.ship02);
         pathPoint.setDuring(during);
 
         pathPoint.positionInScreen();
