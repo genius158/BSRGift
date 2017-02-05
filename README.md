@@ -31,9 +31,12 @@ bsr.setFirstRotation(-90); // 设置动画初始旋转角度
 bsr.autoRotation(); // 设置动画旋转跟随运动轨迹
 bsr.adjustScaleInScreen(1f);// 设置资源相对容器的大小
 bsr.attachPoint(bsr2);// 设置bsr的位移跟随bsr2
-bsr.setScale(0.5f);// 恒定bsr的缩放为0.5
 bsr.setPositionXPercent(0.5f);// 设置bsrX轴上位移的基准点
 bsr.setAlphaTrigger(0.9f);// 设置动画的淡出在动画执行的到0.9的时候
+
+bsr.setScale(0.5f);// 恒定bsr的缩放
+bsr.setPositionPoint(0.5f,0.5f);// 恒定bsr的位置
+bsr.setRotation(100);// 恒定bsr的恒定旋转角度
 
 bsr.addScaleControl(0.5f);// 添加缩放的控制点用于贝塞尔效果
 bsr.addRotationControl(30);// 添加旋转的控制点用于贝塞尔效果
