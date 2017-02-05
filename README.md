@@ -38,8 +38,6 @@ bsr.setAlphaTrigger(0.9f);// 设置动画的淡出在动画执行的到0.9的时
 bsr.addScaleControl(0.5f);// 添加缩放的控制点用于贝塞尔效果
 bsr.addRotationControl(30);// 添加旋转的控制点用于贝塞尔效果
 bsr.addPositionControlPoint(200);// 添加位移的控制点用于贝塞尔效果，如果调用positionInScreen()，填入的参数为相对父View界面的比例值
-
-
 ```
 
 ### 资源文件切勿用于商业用途
