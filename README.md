@@ -22,7 +22,7 @@ bsrGiftView.setRes(context, R.drawable.gift_car_t2); // 设置view的图片资�
 bsrGiftLayout.addChild(view); // 设置giftLayout的view控件，并播放动画
 bsrGiftView.addBSRPathPoints(bsrPathPoints); // 加入一组bsr并播放动画，不可保持之前执行的动画
 bsrGiftView.addBSRPathPointAndDraw(bsrPathPoint); // 添加和播放一帧动画，用于帧动画
-bsrGiftView.addBSRPathPoint(bsrPathPoint); // 加入一个动画数据，斌播放，可保持之前执行的动画
+bsrGiftView.addBSRPathPoint(bsrPathPoint); // 加入一个动画数据，并播放，可保持之前执行的动画
 
 //-共同用法-
 bsr.setDuring(during); // 设置动画执行时间
