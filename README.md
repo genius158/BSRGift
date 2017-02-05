@@ -15,6 +15,14 @@
 <br>
 
 ```
-giftView.setRes(context, R.drawable.gift_car_t2);//设置view的图片资源
-giftLayout.addChild(view);//设置giftLayout的view控件
+//-设置动画源-
+giftView.setRes(context, R.drawable.gift_car_t2); // 设置view的图片资源
+giftLayout.addChild(view); // 设置giftLayout的view控件
+
+//-用法-
+bsr.setDuring(during); // 设置动画执行时间
+bsr.positionInScreen(); // 设置位置为相对控件的位置（比如0.5是控件的中心点）
+bsr.setFirstRotation(-90); // 设置动画初始旋转角度
+bsr.autoRotation(); // 设置动画旋转跟随运动轨迹
+bsr.adjustScaleInScreen(1f);// 设置资源相对容器的大小
 ```
