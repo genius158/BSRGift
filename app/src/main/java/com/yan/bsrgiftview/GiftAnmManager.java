@@ -338,16 +338,17 @@ public class GiftAnmManager {
         bsrPoint.positionInScreen();
         bsrPoint.setFirstRotation(-90);
         bsrPoint.autoRotation();
+        bsrPoint.setScaleInScreen(1f);
         bsrPoint.addPositionControlPoint(0f, 0f);
         bsrPoint.addPositionControlPoint(1f, 0f);
         bsrPoint.addPositionControlPoint(1f, 1f);
-        bsrPoint.setScaleInScreen(1f);
-        bsrPoint.setScale(0.4f);
         bsrPoint.addPositionControlPoint(0f, 1f);
+        bsrPoint.centerInside();
+        bsrPoint.setScale(0.4f);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
         bsrPoint.setAntiAlias(true);
         bsrPoint.setPositionXPercent(0.5f);
-        bsrPoint.setPositionYPercent(0f);
+        bsrPoint.setPositionYPercent(0.5f);
         bsrPathPoints.add(bsrPoint);
 
         BSRPathView bsrPathView = new BSRPathView();
@@ -380,7 +381,6 @@ public class GiftAnmManager {
                             dragon.setDuring(during + 2);
                             dragon.setInterpolator(new LinearInterpolator());
                             dragon.setRes(context, dragonIds[index]);
-                            dragon.setScaleInScreen(1);
                             bsrGiftView.addBSRPathPointAndDraw(dragon);
                         } else {
                             bsrGiftView.addBSRPathPointAndDraw(null);
@@ -481,14 +481,13 @@ public class GiftAnmManager {
         pathPoint.setDuring(during);
 
         pathPoint.positionInScreen();
-        pathPoint.addPositionControlPoint(0f, 0.4f);
-        pathPoint.addPositionControlPoint(0.53f, 0.4f);
-        pathPoint.addPositionControlPoint(0.53f, 0.4f);
-        pathPoint.addPositionControlPoint(0.53f, 0.4f);
-        pathPoint.addPositionControlPoint(0.53f, 0.4f);
+        pathPoint.addPositionControlPoint(0f, 0.6f);
+        pathPoint.addPositionControlPoint(0.5f, 0.5f);
+        pathPoint.addPositionControlPoint(0.5f, 0.5f);
+        pathPoint.addPositionControlPoint(0.5f, 0.5f);
+        pathPoint.addPositionControlPoint(0.5f, 0.5f);
         pathPoint.setPositionXPercent(0.5f);
         pathPoint.setPositionYPercent(0.5f);
-
         pathPoint.setScaleInScreen(1);
         pathPoint.addScaleControl(0.3f);
         pathPoint.addScaleControl(0.7f);

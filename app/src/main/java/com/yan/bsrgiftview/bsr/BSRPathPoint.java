@@ -96,19 +96,15 @@ public class BSRPathPoint extends BSRPathBase {
                 if (isCenterInside) {
                     if (timesWidth > timesHeight) {
                         matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
-                        matrix.preTranslate((viewWidth - getRes().getWidth() * timesHeight * scaleInScreen) / 2, 0);
+                        matrix.preTranslate((viewWidth - getRes().getWidth() ) / 2, 0);
                     } else {
                         matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
-                        matrix.preTranslate(0, (viewHeight - getRes().getHeight() * timesWidth * scaleInScreen) / 2);
+                        matrix.preTranslate(0, (viewHeight - getRes().getHeight() ) / 2);
                     }
                 } else {
                     matrix.setTranslate(
-                            truePointX - ((scaleInScreen != -10000)
-                                    ? getRes().getWidth() * timesHeight * scaleInScreen * xPositionPercent
-                                    : getRes().getWidth()) * xPositionPercent
-                            , truePointY - ((scaleInScreen != -10000)
-                                    ? getRes().getHeight() * timesWidth * scaleInScreen * yPositionPercent
-                                    : getRes().getHeight()) * yPositionPercent
+                            truePointX - (getRes().getWidth() * xPositionPercent)
+                            , truePointY - (getRes().getHeight() * yPositionPercent)
                     );
                 }
             }

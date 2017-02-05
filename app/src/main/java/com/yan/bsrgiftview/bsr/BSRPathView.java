@@ -77,11 +77,13 @@ public class BSRPathView extends BSRPathBase {
 
                 if (isCenterInside) {
                     if (timesWidth > timesHeight) {
-                        tempScale = timesHeight * scaleInScreen;
-                        view.setX(screenWidth - view.getWidth() * timesHeight * scaleInScreen / 2);
+                        view.setScaleX(timesHeight);
+                        view.setScaleY(timesHeight);
+                        view.setX((screenWidth - view.getWidth() * timesHeight * scaleInScreen )/ 2);
                     } else {
-                        tempScale = timesWidth * scaleInScreen;
-                        view.setY(screenHeight - view.getHeight() * timesWidth * scaleInScreen / 2);
+                        view.setScaleX(timesWidth);
+                        view.setScaleY(timesWidth);
+                        view.setY((screenHeight - view.getHeight() * timesWidth * scaleInScreen) / 2);
                     }
                 } else if (scaleInScreen != -10000) {
                     if (timesWidth > timesHeight) {
@@ -94,10 +96,10 @@ public class BSRPathView extends BSRPathBase {
                 if (!isCenterInside) {
                     view.setX(truePointX - view.getWidth() * xPositionPercent);
                     view.setY(truePointY - view.getHeight() * yPositionPercent);
-                }
 
-                view.setScaleX(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
-                view.setScaleY(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
+                    view.setScaleX(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
+                    view.setScaleY(((trueScaleValue != -1) ? trueScaleValue : 1) * tempScale);
+                }
 
                 if (trueRotation == -10000) {
                     if (lastPoint == null) {
