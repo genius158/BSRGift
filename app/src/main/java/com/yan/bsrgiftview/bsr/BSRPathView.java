@@ -107,10 +107,6 @@ public class BSRPathView extends BSRPathBase {
                 } else {
                     view.setRotation(trueRotation);
                 }
-
-                if (onAnimationStartListener != null) {
-                    onAnimationStartListener.onAnimationStart();
-                }
             }
         });
         anim.addListener(new AnimatorListenerAdapter() {
@@ -128,18 +124,7 @@ public class BSRPathView extends BSRPathBase {
         this.endListeners.add(endListener);
     }
 
-    OnAnimationStartListener onAnimationStartListener;
-
-    public void setOnAnimationStartListener(OnAnimationStartListener onAnimationStartListener) {
-        this.onAnimationStartListener = onAnimationStartListener;
-    }
-
     public void attachParent(BSRGiftLayout bsrGiftLayout) {
         this.bsrGiftLayout = bsrGiftLayout;
     }
-
-    public interface OnAnimationStartListener {
-        void onAnimationStart();
-    }
-
 }
