@@ -75,7 +75,7 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
 
         if (scaleList != null && scaleList.size() >= 2) {
             endValue.trueScaleValue = (
-                    getValueRoundHalfUp(getBSRValue(scaleList, scaleList.size() - 1, 0, t)));
+                    getBSRValue(scaleList, scaleList.size() - 1, 0, t));
         } else if (endValue.getLastScale() != -10000) {
             endValue.trueScaleValue = endValue.getFirstScale()
                     + (endValue.getLastScale() - endValue.getFirstScale()) * t;
@@ -96,7 +96,7 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
 
     private float getValueRoundHalfUp(float value) {
         BigDecimal b = new BigDecimal(value);
-        return b.setScale(3, BigDecimal.ROUND_HALF_UP).floatValue();
+        return b.setScale(2, BigDecimal.ROUND_HALF_UP).floatValue();
     }
 
     private float getBSRValue(List<Float> floats, int i, int j, float t) {
