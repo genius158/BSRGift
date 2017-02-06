@@ -5,12 +5,12 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 
-import com.yan.bsrgiftview.bsr.BSRGiftView;
-import com.yan.bsrgiftview.bsr.BSRGiftLayout;
-import com.yan.bsrgiftview.bsr.BSRPathBase;
-import com.yan.bsrgiftview.bsr.BSRPathPoint;
-import com.yan.bsrgiftview.bsr.BSRPathView;
-import com.yan.bsrgiftview.bsr.OnAnmEndListener;
+import com.yan.bsrgift.BSRGiftLayout;
+import com.yan.bsrgift.BSRGiftView;
+import com.yan.bsrgift.BSRPathBase;
+import com.yan.bsrgift.BSRPathPoint;
+import com.yan.bsrgift.BSRPathView;
+import com.yan.bsrgift.OnAnmEndListener;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+
 
 /**
  * Created by yan on 2016/12/14.

@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="com.yan.bsrgifview.com.yan.bsrgiftview.MainActivity">
+    tools:context="com.yan.bsrgiftview.MainActivity">
 
-    <com.yan.bsrgiftview.bsr.BSRGiftView
+    <com.yan.bsrgift.BSRGiftView
         android:id="@+id/gift_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <com.yan.bsrgiftview.bsr.BSRGiftLayout
+    <com.yan.bsrgift.BSRGiftLayout
         android:id="@+id/gift_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

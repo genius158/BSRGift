@@ -4,8 +4,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-import com.yan.bsrgiftview.bsr.BSRGiftLayout;
-import com.yan.bsrgiftview.bsr.BSRGiftView;
+import com.yan.bsrgift.BSRGiftLayout;
+import com.yan.bsrgift.BSRGiftView;
+
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.yan.bsrgiftview.bsr;
+package com.yan.bsrgift;
 
 import android.content.Context;
 import android.util.AttributeSet;

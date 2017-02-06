@@ -1,4 +1,4 @@
-package com.yan.bsrgiftview.bsr;
+package com.yan.bsrgift;
 
 /**
  * Created by yan on 2016/12/9.

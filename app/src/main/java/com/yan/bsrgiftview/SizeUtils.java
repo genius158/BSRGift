@@ -1,4 +1,4 @@
-package com.yan.bsrgiftview.bsr;
+package com.yan.bsrgiftview;
 
 import android.content.Context;
 import android.util.TypedValue;
