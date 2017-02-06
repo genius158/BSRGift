@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
 
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
@@ -89,8 +90,8 @@ public class BSRPathView extends BSRPathBase {
 
                 if (!isCenterInside) {
                     if (attachPathBase != null) {
-                        view.setX(attachPathBase.truePointX + attachPathBase.attachDx);
-                        view.setY(attachPathBase.truePointY + attachPathBase.attachDy);
+                        view.setX(attachPathBase.truePointX + (isPositionInScreen ? attachDx * screenWidth : attachDx));
+                        view.setY(attachPathBase.truePointY + (isPositionInScreen ? attachDy * screenHeight : attachDy));
                     } else {
                         view.setX(truePointX - view.getWidth() * xPositionPercent);
                         view.setY(truePointY - view.getHeight() * yPositionPercent);

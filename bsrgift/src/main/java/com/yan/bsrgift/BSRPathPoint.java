@@ -74,7 +74,9 @@ public class BSRPathPoint extends BSRPathBase {
 
             if (attachPathBase != null) {
                 matrix.set(((BSRPathPoint) attachPathBase).getMatrix());
-                matrix.preTranslate(attachDx, attachDy);
+                matrix.preTranslate(
+                        (isPositionInScreen ? attachDx * screenWidth : attachDx)
+                        , (isPositionInScreen ? attachDy * screenHeight : attachDy));
             } else {
                 if (trueRotation == -10000) {
                     if (lastPoint == null) {

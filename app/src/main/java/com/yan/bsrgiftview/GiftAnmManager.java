@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.TextView;
 
 import com.yan.bsrgift.BSRGiftLayout;
 import com.yan.bsrgift.BSRGiftView;
@@ -187,10 +188,10 @@ public class GiftAnmManager {
         bsrPathView.positionInScreen();
         bsrPathView.setPositionXPercent(0.5f);
         bsrPathView.setPositionYPercent(0.5f);
-        bsrPathView.addPositionControlPoint(0,0);
-        bsrPathView.addPositionControlPoint(0,1);
-        bsrPathView.addPositionControlPoint(1,1);
-        bsrPathView.addPositionControlPoint(1,0);
+        bsrPathView.addPositionControlPoint(0, 0);
+        bsrPathView.addPositionControlPoint(0, 1);
+        bsrPathView.addPositionControlPoint(1, 1);
+        bsrPathView.addPositionControlPoint(1, 0);
         bsrPathView.setScale(0.3f);
         bsrPathView.setFirstRotation(90);
         bsrPathView.setXPercent(0.5f);
@@ -203,7 +204,6 @@ public class GiftAnmManager {
                 subscription[0].cancel();
             }
         });
-
         giftLayout.addChild(bsrPathView);
     }
 
@@ -307,7 +307,8 @@ public class GiftAnmManager {
         }
 
         BSRPathPoint bsrPoint = new BSRPathPoint();
-        bsrPoint.attachPoint(bsrPathPoints.get(0), 0, 250);
+        bsrPoint.positionInScreen();
+        bsrPoint.attachPoint(bsrPathPoints.get(0), 0, 0.13f);
         bsrPoint.setRes(context, R.drawable.kongque_main);
         bsrPoint.setDuring(during);
         bsrPoint.adjustScaleInScreen(1);
@@ -410,7 +411,7 @@ public class GiftAnmManager {
         pathPoint.positionInScreen();
         pathPoint.setPositionXPercent(0.5f);
         pathPoint.setPositionYPercent(0.5f);
-        pathPoint.setPositionPoint(0.68f,0.45f);
+        pathPoint.setPositionPoint(0.68f, 0.45f);
         pathPoint.addScaleControl(0.2f);
         pathPoint.addScaleControl(0.8f);
         pathPoint.addScaleControl(0.8f);
@@ -430,7 +431,7 @@ public class GiftAnmManager {
         pathPointHeart1.positionInScreen();
         pathPointHeart1.setPositionXPercent(0.5f);
         pathPointHeart1.setPositionYPercent(0.5f);
-        pathPointHeart1.setPositionPoint(0.3f,0.45f);
+        pathPointHeart1.setPositionPoint(0.3f, 0.45f);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
@@ -451,7 +452,7 @@ public class GiftAnmManager {
         pathPointHeart2.positionInScreen();
         pathPointHeart2.setPositionXPercent(0.5f);
         pathPointHeart2.setPositionYPercent(0.5f);
-        pathPointHeart2.setPositionPoint(0.22f,0.45f);
+        pathPointHeart2.setPositionPoint(0.22f, 0.45f);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
