@@ -128,12 +128,12 @@ public class GiftAnmManager {
         bsrPathView.setChild(bsrGiftView);
         bsrPathView.positionInScreen();
         bsrPathView.addPositionControlPoint(1, 0.1f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
-        bsrPathView.addPositionControlPoint(0f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
+        bsrPathView.addPositionControlPoint(0.05f, 0.3f);
         bsrPathView.addPositionControlPoint(-1f, 0.5f);
 
         bsrPathView.setDuring(3000);
@@ -488,10 +488,10 @@ public class GiftAnmManager {
 
         pathPoint.positionInScreen();
         pathPoint.addPositionControlPoint(0f, 0.6f);
-        pathPoint.addPositionControlPoint(0.5f, 0.5f);
-        pathPoint.addPositionControlPoint(0.5f, 0.5f);
-        pathPoint.addPositionControlPoint(0.5f, 0.5f);
-        pathPoint.addPositionControlPoint(0.5f, 0.5f);
+        pathPoint.addPositionControlPoint(0.45f, 0.5f);
+        pathPoint.addPositionControlPoint(0.45f, 0.5f);
+        pathPoint.addPositionControlPoint(0.45f, 0.5f);
+        pathPoint.addPositionControlPoint(0.45f, 0.5f);
         pathPoint.setPositionXPercent(0.5f);
         pathPoint.setPositionYPercent(0.5f);
         pathPoint.adjustScaleInScreen(1);
