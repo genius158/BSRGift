@@ -308,7 +308,7 @@ public class GiftAnmManager {
 
         BSRPathPoint bsrPoint = new BSRPathPoint();
         bsrPoint.positionInScreen();
-        bsrPoint.attachPoint(bsrPathPoints.get(0), -0.02f, 0.13f);
+        bsrPoint.attachPoint(bsrPathPoints.get(0), -0.01f, 0.13f);
         bsrPoint.setRes(context, R.drawable.kongque_main);
         bsrPoint.setDuring(during);
         bsrPoint.adjustScaleInScreen(1);
