@@ -293,7 +293,7 @@ public class GiftAnmManager {
                 bsrPointT.setLastRotation(-(i - 6) * 20);
             }
             bsrPointT.positionInScreen();
-            bsrPointT.setPositionPoint(0.5f, 0.2f);
+            bsrPointT.setPositionPoint(0.5f, 0.1f);
             bsrPointT.setPositionXPercent(0.5f);
             bsrPointT.setRes(context, R.drawable.kongque_cibang1);
             bsrPointT.setDuring(during);
@@ -407,7 +407,10 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint = new BSRPathPoint();
         pathPoint.setRes(context, R.drawable.kiss_chun);
         pathPoint.setDuring(during);
-        pathPoint.setPositionPoint(400, 500);
+        pathPoint.positionInScreen();
+        pathPoint.setPositionXPercent(0.5f);
+        pathPoint.setPositionYPercent(0.5f);
+        pathPoint.setPositionPoint(0.68f,0.45f);
         pathPoint.addScaleControl(0.2f);
         pathPoint.addScaleControl(0.8f);
         pathPoint.addScaleControl(0.8f);
@@ -424,7 +427,10 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart1 = new BSRPathPoint();
         pathPointHeart1.setRes(context, R.drawable.kiss_xin);
         pathPointHeart1.setDuring(during);
-        pathPointHeart1.setPositionPoint(200, 600);
+        pathPointHeart1.positionInScreen();
+        pathPointHeart1.setPositionXPercent(0.5f);
+        pathPointHeart1.setPositionYPercent(0.5f);
+        pathPointHeart1.setPositionPoint(0.3f,0.45f);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
         pathPointHeart1.addScaleControl(0.0f);
@@ -442,7 +448,10 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart2 = new BSRPathPoint();
         pathPointHeart2.setRes(context, R.drawable.kiss_xin);
         pathPointHeart2.setDuring(during);
-        pathPointHeart2.setPositionPoint(110, 620);
+        pathPointHeart2.positionInScreen();
+        pathPointHeart2.setPositionXPercent(0.5f);
+        pathPointHeart2.setPositionYPercent(0.5f);
+        pathPointHeart2.setPositionPoint(0.22f,0.45f);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
         pathPointHeart2.addScaleControl(0.0f);
