@@ -509,7 +509,8 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint2 = new BSRPathPoint();
         pathPoint2.setRes(context, R.drawable.ship01);
         pathPoint2.setDuring(during);
-        pathPoint2.attachPoint(bsrPathPoints.get(0), 0, 430);
+        pathPoint2.positionInScreen();
+        pathPoint2.attachPoint(bsrPathPoints.get(0), 0, 0.265f);
         pathPoint2.setXPercent(0.5f);
         pathPoint2.setYPercent(0.5f);
         pathPoint2.adjustScaleInScreen(1);
