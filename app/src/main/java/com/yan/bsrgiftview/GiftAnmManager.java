@@ -530,20 +530,4 @@ public class GiftAnmManager {
         bsrGiftView.addBSRPathPoints(bsrPathPoints);
 
     }
-
-    public void onDestroy() {
-
-    }
-
-    public static class Action implements Serializable {
-        public AnimationUserDataBean userBean;
-        public AnimationInfoBean.DataBean dataBean;
-        public int times = 1;
-
-        public Action(AnimationUserDataBean userBean, AnimationInfoBean.DataBean dataBean) {
-            this.userBean = userBean;
-            this.dataBean = dataBean;
-        }
-    }
-
 }
