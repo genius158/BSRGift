@@ -3,7 +3,7 @@
 ![演示gif](demo_gif.gif)
 
 ## 1.概述
-直播项目的礼物模块，实现一些基本的礼物动画，随着项目的深入，BSR也将会继续完善(2017-5-20,很不幸项目搁浅了。。。)
+直播项目的礼物模块，实现一些基本的礼物动画，随着项目的深入，BSR也将会继续完善(2017-5-20,很不幸项目搁浅了。。。关于优化，有兴趣童鞋的可以试试重写textureview、surfaceview，效果应该要好很多)
 
 ## 2.用法 详见[GiftAnmManager.java](https://github.com/genius158/BSRGift/blob/master/app/src/main/java/com/yan/bsrgiftview/GiftAnmManager.java)(资源文件切勿用于商业用途)
 **BSR提供BSRGiftView、和BSRGiftLayout两个控件**
