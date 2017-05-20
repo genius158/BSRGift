@@ -137,7 +137,7 @@ public class BSRPathPoint extends BSRPathBase {
                     public void onValueBack(float value) {
                         if (value > alphaTrigger)
                             if (paint != null)
-                                paint.setAlpha((int) (255 - 255 * (1 - ((1 / (1 - alphaTrigger)) * (1 - value)))));
+                                paint.setAlpha((int) (255  * ((1-value)/(1 - alphaTrigger))));
                     }
                 };
             }
