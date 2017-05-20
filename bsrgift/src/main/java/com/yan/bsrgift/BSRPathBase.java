@@ -54,7 +54,7 @@ public class BSRPathBase {
 
     private double rotationPoint2Point;
 
-    public void adjustScaleInScreen(float scaleInScreen) {
+    public void setAdjustScaleInScreen(float scaleInScreen) {
         this.scaleInScreen = scaleInScreen;
     }
 
@@ -84,8 +84,8 @@ public class BSRPathBase {
         return isAutoRotation;
     }
 
-    public void autoRotation() {
-        isAutoRotation = true;
+    public void setAutoRotation(boolean isAutoRotation) {
+        this.isAutoRotation = isAutoRotation;
     }
 
     public void setPointPercentTrigger(boolean pointPercentTrigger) {

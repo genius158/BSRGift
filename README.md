@@ -28,8 +28,8 @@ bsrGiftView.addBSRPathPoint(bsrPathPoint); // 加入一个动画数据，并播�
 bsrPath.setDuring(during); // 设置动画执行时间
 bsrPath.setPositionInScreen(true); // 设置位置为相对控件的位置（比如0.5是控件的中心点）
 bsrPath.setFirstRotation(-90); // 设置动画初始旋转角度
-bsrPath.autoRotation(); // 设置动画旋转跟随运动轨迹
-bsrPath.adjustScaleInScreen(1f);// 设置资源相对容器的大小
+bsrPath.setAutoRotation(true); // 设置动画旋转跟随运动轨迹
+bsrPath.setAdjustScaleInScreen(1f);// 设置资源相对容器的大小
 bsrPath.attachPoint(bsr2);// 设置bsr的位移跟随bsr2
 bsrPath.setPositionXPercent(0.5f);// 设置bsrX轴上位移的基准点
 bsrPath.setAlphaTrigger(0.9f);// 设置动画的淡出在动画执行的到0.9的时候

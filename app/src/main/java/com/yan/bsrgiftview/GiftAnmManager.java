@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
-import android.widget.TextView;
 
 import com.yan.bsrgift.BSRGiftLayout;
 import com.yan.bsrgift.BSRGiftView;
@@ -16,7 +15,6 @@ import com.yan.bsrgift.OnAnmEndListener;
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -113,7 +111,7 @@ public class GiftAnmManager {
                         carOne.setDuring(during);
                         carOne.setInterpolator(new LinearInterpolator());
                         carOne.setRes(context, car1Ids[index++ % 7]);
-                        carOne.adjustScaleInScreen(0.8f);
+                        carOne.setAdjustScaleInScreen(0.8f);
                         carOne.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carOne);
                     }
@@ -196,7 +194,7 @@ public class GiftAnmManager {
         bsrPathView.setFirstRotation(90);
         bsrPathView.setXPercent(0.5f);
         bsrPathView.setYPercent(0.5f);
-        bsrPathView.autoRotation();
+        bsrPathView.setAutoRotation(true);
         bsrPathView.setDuring(3000);
         bsrPathView.addEndListeners(new OnAnmEndListener() {
             @Override
@@ -229,7 +227,7 @@ public class GiftAnmManager {
                         carTwo.setDuring(during);
                         carTwo.setInterpolator(new LinearInterpolator());
                         carTwo.setRes(context, car2Ids[index++ % 2]);
-                        carTwo.adjustScaleInScreen(1f);
+                        carTwo.setAdjustScaleInScreen(1f);
                         carTwo.setAntiAlias(true);
                         bsrGiftView.addBSRPathPointAndDraw(carTwo);
                     }
@@ -299,7 +297,7 @@ public class GiftAnmManager {
             bsrPointT.setDuring(during);
             bsrPointT.setXPercent(0.5f);
             bsrPointT.setYPercent(1.0f);
-            bsrPointT.adjustScaleInScreen(1f);
+            bsrPointT.setAdjustScaleInScreen(1f);
             bsrPointT.setScale(0.2f);
             bsrPointT.setAntiAlias(true);
             bsrPointT.setInterpolator(new DecelerateInterpolator());
@@ -311,7 +309,7 @@ public class GiftAnmManager {
         bsrPoint.attachPoint(bsrPathPoints.get(0), -0.01f, 0.13f);
         bsrPoint.setRes(context, R.drawable.kongque_main);
         bsrPoint.setDuring(during);
-        bsrPoint.adjustScaleInScreen(1);
+        bsrPoint.setAdjustScaleInScreen(1);
         bsrPoint.setScale(0.4f);
         bsrPoint.setInterpolator(new DecelerateInterpolator());
         bsrPoint.setAntiAlias(true);
@@ -336,8 +334,8 @@ public class GiftAnmManager {
         bsrPoint.setDuring(during);
         bsrPoint.setPositionInScreen(true);
         bsrPoint.setFirstRotation(-90);
-        bsrPoint.autoRotation();
-        bsrPoint.adjustScaleInScreen(1f);
+        bsrPoint.setAutoRotation(true);
+        bsrPoint.setAdjustScaleInScreen(1f);
         bsrPoint.addPositionControlPoint(0f, 0f);
         bsrPoint.addPositionControlPoint(1f, 0f);
         bsrPoint.addPositionControlPoint(1f, 1f);
@@ -421,7 +419,7 @@ public class GiftAnmManager {
         pathPoint.addScaleControl(0.8f);
         pathPoint.setXPercent(0.5f);
         pathPoint.setYPercent(0.5f);
-        pathPoint.adjustScaleInScreen(0.5f);
+        pathPoint.setAdjustScaleInScreen(0.5f);
         pathPoint.setAntiAlias(true);
         bsrPathPoints.add(pathPoint);
 
@@ -442,7 +440,7 @@ public class GiftAnmManager {
         pathPointHeart1.addScaleControl(0.8f);
         pathPointHeart1.setXPercent(0.5f);
         pathPointHeart1.setYPercent(0.5f);
-        pathPointHeart1.adjustScaleInScreen(0.21f);
+        pathPointHeart1.setAdjustScaleInScreen(0.21f);
         pathPointHeart1.setAntiAlias(true);
         bsrPathPoints.add(pathPointHeart1);
 
@@ -465,7 +463,7 @@ public class GiftAnmManager {
         pathPointHeart2.addScaleControl(0.5f);
         pathPointHeart2.setXPercent(0.5f);
         pathPointHeart2.setYPercent(0.5f);
-        pathPointHeart2.adjustScaleInScreen(0.17f);
+        pathPointHeart2.setAdjustScaleInScreen(0.17f);
         pathPointHeart2.setAntiAlias(true);
         bsrPathPoints.add(pathPointHeart2);
 
@@ -495,7 +493,7 @@ public class GiftAnmManager {
         pathPoint.addPositionControlPoint(0.45f, 0.5f);
         pathPoint.setPositionXPercent(0.5f);
         pathPoint.setPositionYPercent(0.5f);
-        pathPoint.adjustScaleInScreen(1);
+        pathPoint.setAdjustScaleInScreen(1);
         pathPoint.addScaleControl(0.3f);
         pathPoint.addScaleControl(0.7f);
         pathPoint.addScaleControl(0.7f);
@@ -513,7 +511,7 @@ public class GiftAnmManager {
         pathPoint2.attachPoint(bsrPathPoints.get(0), 0, 0.265f);
         pathPoint2.setXPercent(0.5f);
         pathPoint2.setYPercent(0.5f);
-        pathPoint2.adjustScaleInScreen(1);
+        pathPoint2.setAdjustScaleInScreen(1);
         pathPoint2.addRotationControl(-2f);
         pathPoint2.addRotationControl(-2f);
         pathPoint2.addRotationControl(-2f);
