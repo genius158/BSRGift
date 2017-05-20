@@ -76,7 +76,7 @@ public class BSREvaluator implements TypeEvaluator<BSRPathBase> {
         if (scaleList != null && scaleList.size() >= 2) {
             endValue.trueScaleValue = (
                     getBSRValue(scaleList, scaleList.size() - 1, 0, t));
-        } else if (endValue.getLastScale() != -10000) {
+        } else if (endValue.getLastScale() != Integer.MIN_VALUE) {
             endValue.trueScaleValue = endValue.getFirstScale()
                     + (endValue.getLastScale() - endValue.getFirstScale()) * t;
         }

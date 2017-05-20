@@ -127,7 +127,7 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.positionInScreen();
+        bsrPathView.setPositionInScreen(true);
         bsrPathView.addPositionControlPoint(1, 0.1f);
         bsrPathView.addPositionControlPoint(0.05f, 0.3f);
         bsrPathView.addPositionControlPoint(0.05f, 0.3f);
@@ -185,7 +185,7 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.positionInScreen();
+        bsrPathView.setPositionInScreen(true);
         bsrPathView.setPositionXPercent(0.5f);
         bsrPathView.setPositionYPercent(0.5f);
         bsrPathView.addPositionControlPoint(0, 0);
@@ -247,7 +247,7 @@ public class GiftAnmManager {
 
         BSRPathView bsrPathView = new BSRPathView();
         bsrPathView.setChild(bsrGiftView);
-        bsrPathView.positionInScreen();
+        bsrPathView.setPositionInScreen(true);
         bsrPathView.addPositionControlPoint(0f, 0.3f);
         bsrPathView.addPositionControlPoint(0.06f, 0.3f);
         bsrPathView.addPositionControlPoint(0.06f, 0.3f);
@@ -292,7 +292,7 @@ public class GiftAnmManager {
             } else if (i >= 7 && i < 13) {
                 bsrPointT.setLastRotation(-(i - 6) * 20);
             }
-            bsrPointT.positionInScreen();
+            bsrPointT.setPositionInScreen(true);
             bsrPointT.setPositionPoint(0.5f, 0.1f);
             bsrPointT.setPositionXPercent(0.5f);
             bsrPointT.setRes(context, R.drawable.kongque_cibang1);
@@ -307,7 +307,7 @@ public class GiftAnmManager {
         }
 
         BSRPathPoint bsrPoint = new BSRPathPoint();
-        bsrPoint.positionInScreen();
+        bsrPoint.setPositionInScreen(true);
         bsrPoint.attachPoint(bsrPathPoints.get(0), -0.01f, 0.13f);
         bsrPoint.setRes(context, R.drawable.kongque_main);
         bsrPoint.setDuring(during);
@@ -334,7 +334,7 @@ public class GiftAnmManager {
         BSRPathPoint bsrPoint = new BSRPathPoint();
         bsrPoint.setRes(context, R.drawable.gift_car_t2);
         bsrPoint.setDuring(during);
-        bsrPoint.positionInScreen();
+        bsrPoint.setPositionInScreen(true);
         bsrPoint.setFirstRotation(-90);
         bsrPoint.autoRotation();
         bsrPoint.adjustScaleInScreen(1f);
@@ -408,7 +408,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint = new BSRPathPoint();
         pathPoint.setRes(context, R.drawable.kiss_chun);
         pathPoint.setDuring(during);
-        pathPoint.positionInScreen();
+        pathPoint.setPositionInScreen(true);
         pathPoint.setPositionXPercent(0.5f);
         pathPoint.setPositionYPercent(0.5f);
         pathPoint.setPositionPoint(0.68f, 0.45f);
@@ -428,7 +428,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart1 = new BSRPathPoint();
         pathPointHeart1.setRes(context, R.drawable.kiss_xin);
         pathPointHeart1.setDuring(during);
-        pathPointHeart1.positionInScreen();
+        pathPointHeart1.setPositionInScreen(true);
         pathPointHeart1.setPositionXPercent(0.5f);
         pathPointHeart1.setPositionYPercent(0.5f);
         pathPointHeart1.setPositionPoint(0.3f, 0.45f);
@@ -449,7 +449,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPointHeart2 = new BSRPathPoint();
         pathPointHeart2.setRes(context, R.drawable.kiss_xin);
         pathPointHeart2.setDuring(during);
-        pathPointHeart2.positionInScreen();
+        pathPointHeart2.setPositionInScreen(true);
         pathPointHeart2.setPositionXPercent(0.5f);
         pathPointHeart2.setPositionYPercent(0.5f);
         pathPointHeart2.setPositionPoint(0.22f, 0.45f);
@@ -487,7 +487,7 @@ public class GiftAnmManager {
         pathPoint.setRes(context, R.drawable.ship02);
         pathPoint.setDuring(during);
 
-        pathPoint.positionInScreen();
+        pathPoint.setPositionInScreen(true);
         pathPoint.addPositionControlPoint(0f, 0.6f);
         pathPoint.addPositionControlPoint(0.45f, 0.5f);
         pathPoint.addPositionControlPoint(0.45f, 0.5f);
@@ -509,7 +509,7 @@ public class GiftAnmManager {
         BSRPathPoint pathPoint2 = new BSRPathPoint();
         pathPoint2.setRes(context, R.drawable.ship01);
         pathPoint2.setDuring(during);
-        pathPoint2.positionInScreen();
+        pathPoint2.setPositionInScreen(true);
         pathPoint2.attachPoint(bsrPathPoints.get(0), 0, 0.265f);
         pathPoint2.setXPercent(0.5f);
         pathPoint2.setYPercent(0.5f);

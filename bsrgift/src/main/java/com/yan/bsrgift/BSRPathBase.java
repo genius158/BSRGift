@@ -9,49 +9,50 @@ import java.util.List;
  * Created by yan on 2016/12/8.
  */
 public class BSRPathBase {
-    protected List<PointF> positionControlPoint;
-    protected List<Float> scaleControl;
-    protected List<Float> rotationControl;
+    private List<PointF> positionControlPoint;
+    private List<Float> scaleControl;
+    private List<Float> rotationControl;
 
-    protected int during = 3000;
+    int during = 3000;
 
-    protected PointF positionPointFirst;
-    protected PointF positionPointLast;
-    public float truePointX;
-    public float truePointY;
+    private PointF positionPointFirst;
+    private PointF positionPointLast;
+    float truePointX;
+    float truePointY;
 
-    protected float rotationFirst;
-    protected float rotationLast;
-    public float trueRotation = -10000;
+    private float rotationFirst;
+    private float rotationLast;
+    float trueRotation = Integer.MIN_VALUE;
 
-    protected float scaleFirst;
-    protected float scaleLast = -10000;
-    public float trueScaleValue = -1;
+    private float scaleFirst;
+    private float scaleLast = Integer.MIN_VALUE;
+    float trueScaleValue = -1;
 
-    protected float xPercent = 0.5f;
-    protected float yPercent = 0.5f;
+    float xPercent = 0.5f;
+    float yPercent = 0.5f;
 
-    protected float xPositionPercent = 0.0f;
-    protected float yPositionPercent = 0.0f;
+    float xPositionPercent = 0.0f;
+    float yPositionPercent = 0.0f;
 
-    protected BSRPathBase attachPathBase;
-    protected float attachDx = 0;
-    protected float attachDy = 0;
+    BSRPathBase attachPathBase;
+    float attachDx = 0;
+    float attachDy = 0;
 
-    protected PointF lastPoint;
-    protected float delayTime = 0;
+    PointF lastPoint;
+    float delayTime = 0;
 
-    protected boolean pointPercentTrigger = false;
-    protected boolean isAutoRotation;
-    protected boolean isPositionInScreen = false;
+    private boolean pointPercentTrigger = false;
+    private boolean isAutoRotation;
+    boolean isPositionInScreen = false;
 
-    public float screenWidth = -10000;
-    public float screenHeight = -10000;
+    float screenWidth = Integer.MIN_VALUE;
+    float screenHeight = Integer.MIN_VALUE;
 
-    protected float scaleInScreen = -10000;
-    protected boolean isCenterInside = false;
-    protected List<OnAnmEndListener> endListeners;
+    float scaleInScreen = Integer.MIN_VALUE;
+    boolean isCenterInside = false;
+    List<OnAnmEndListener> endListeners;
 
+    private double rotationPoint2Point;
 
     public void adjustScaleInScreen(float scaleInScreen) {
         this.scaleInScreen = scaleInScreen;
@@ -62,9 +63,10 @@ public class BSRPathBase {
         scaleInScreen = 1;
     }
 
-    public void positionInScreen() {
-        isPositionInScreen = true;
+    public void setPositionInScreen(boolean isPositionInScreen) {
+        this.isPositionInScreen = isPositionInScreen;
     }
+
 
     public void setPositionXPercent(float xPositionPercent) {
         this.xPositionPercent = xPositionPercent;
@@ -225,20 +227,19 @@ public class BSRPathBase {
         return delayTime;
     }
 
-    private double rotationPoint2Point;
 
-    public float getRotationPoint2Point(float x1, float y1, float x2, float y2) {
+    float getRotationPoint2Point(float x1, float y1, float x2, float y2) {
         double k1 = 0;//(double) (y1 - y1) / (x1 * 2 - x1)
         double k2 = (double) (y2 - y1) / (x2 - x1);
         double tmpDegree = Math.atan((Math.abs(k1 - k2)) / (1 + k1 * k2)) / Math.PI * 180;
 
-        if (x2 > x1 && y2 < y1) {  //第一象限
+        if (x2 > x1 && y2 < y1) {
             rotationPoint2Point = 90 - tmpDegree;
-        } else if (x2 > x1 && y2 > y1) {//第二象限
+        } else if (x2 > x1 && y2 > y1) {
             rotationPoint2Point = 90 + tmpDegree;
-        } else if (x2 < x1 && y2 > y1) { //第三象限
+        } else if (x2 < x1 && y2 > y1) {
             rotationPoint2Point = 270 - tmpDegree;
-        } else if (x2 < x1 && y2 < y1) { //第四象限
+        } else if (x2 < x1 && y2 < y1) {
             rotationPoint2Point = 270 + tmpDegree;
         } else if (x2 == x1 && y2 < y1) {
             rotationPoint2Point = 0;

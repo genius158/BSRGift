@@ -47,85 +47,93 @@ public class BSRPathPoint extends BSRPathBase {
         screenWidth = viewWidth;
         screenHeight = viewHeight;
         if (isFrameAnimation) {
-            if (scaleInScreen != -10000) {
-                float timesWidth = viewWidth / res.getWidth();
-                float timesHeight = viewHeight / res.getHeight();
-                if (timesWidth >= timesHeight) {
-                    matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
-                    if (isCenterInside)
-                        matrix.preTranslate((viewWidth - res.getWidth() * timesHeight) / 2, 0);
-                    else
-                        matrix.preTranslate(0, (viewHeight - res.getHeight() * timesHeight * scaleInScreen) / 2);
-                } else {
-                    matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
-                    if (isCenterInside)
-                        matrix.preTranslate(0, (viewHeight - res.getHeight() * timesWidth) / 2);
-                    else
-                        matrix.preTranslate((viewWidth - res.getWidth() * timesWidth * scaleInScreen) / 2, 0);
-                }
-            }
-            canvas.drawBitmap(res, matrix, paint);
-
+            dellFrameAnimation(screenWidth,screenHeight,canvas);
         } else {
-            float timesWidth = viewWidth / res.getWidth();
-            float timesHeight = viewHeight / res.getHeight();
+            dellMainAnimation(screenWidth,screenHeight,canvas);
 
-            float degree = 0;
+        }
+    }
 
-            if (attachPathBase != null) {
-                matrix.set(((BSRPathPoint) attachPathBase).getMatrix());
-                matrix.preTranslate(
-                        (isPositionInScreen ? attachDx * screenWidth : attachDx)
-                        , (isPositionInScreen ? attachDy * screenHeight : attachDy));
-            } else {
-                if (trueRotation == -10000) {
-                    if (lastPoint == null) {
-                        lastPoint = new PointF();
-                        lastPoint.set(truePointX, truePointY);
-                    }
-                    degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, truePointX, truePointY);
-                }
+    private void dellMainAnimation(float viewWidth, float viewHeight, Canvas canvas) {
+        float timesWidth = viewWidth / res.getWidth();
+        float timesHeight = viewHeight / res.getHeight();
 
-                if (isCenterInside) {
-                    if (timesWidth > timesHeight) {
-                        matrix.setTranslate((viewWidth) / 2, 0);
-                        matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
-                    } else {
-                        matrix.setTranslate(0, (viewHeight / 2));
-                        matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
-                    }
-                } else {
-                    matrix.setTranslate(
-                            truePointX - res.getWidth() * xPositionPercent
-                            , truePointY - res.getHeight() * yPositionPercent
-                    );
-                }
-            }
+        float degree = 0;
 
-            if (!isCenterInside && scaleInScreen != -10000) {
-                if (timesWidth > timesHeight) {
-                    matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
-                } else {
-                    matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
-                }
-            }
-
-            if (!isCenterInside && trueScaleValue != -1) {
-                matrix.preScale(trueScaleValue, trueScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
-            }
-
-            if (trueRotation == -10000) {
-                matrix.preRotate(degree + getFirstRotation(), res.getWidth() * xPercent, res.getHeight() * yPercent);
-                if (lastPoint != null)
+        if (attachPathBase != null) {
+            matrix.set(((BSRPathPoint) attachPathBase).getMatrix());
+            matrix.preTranslate(
+                    (isPositionInScreen ? attachDx * this.screenWidth : attachDx)
+                    , (isPositionInScreen ? attachDy * this.screenHeight : attachDy));
+        } else {
+            if (trueRotation == Integer.MIN_VALUE) {
+                if (lastPoint == null) {
+                    lastPoint = new PointF();
                     lastPoint.set(truePointX, truePointY);
-            } else {
-                matrix.preRotate(trueRotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
+                }
+                degree = getRotationPoint2Point(lastPoint.x, lastPoint.y, truePointX, truePointY);
             }
 
-            if (canDraw) {
-                canvas.drawBitmap(res, matrix, paint);
+            if (isCenterInside) {
+                if (timesWidth > timesHeight) {
+                    matrix.setTranslate((viewWidth) / 2, 0);
+                    matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
+                } else {
+                    matrix.setTranslate(0, (viewHeight / 2));
+                    matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
+                }
+            } else {
+                matrix.setTranslate(
+                        truePointX - res.getWidth() * xPositionPercent
+                        , truePointY - res.getHeight() * yPositionPercent
+                );
             }
         }
+
+        if (!isCenterInside && scaleInScreen !=  Integer.MIN_VALUE) {
+            if (timesWidth > timesHeight) {
+                matrix.preScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
+            } else {
+                matrix.preScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen, res.getWidth() * xPercent, res.getHeight() * yPercent);
+            }
+        }
+
+        if (!isCenterInside && trueScaleValue != -1) {
+            matrix.preScale(trueScaleValue, trueScaleValue, res.getWidth() * xPercent, res.getHeight() * yPercent);
+        }
+
+        if (trueRotation == Integer.MIN_VALUE) {
+            matrix.preRotate(degree + getFirstRotation(), res.getWidth() * xPercent, res.getHeight() * yPercent);
+            if (lastPoint != null)
+                lastPoint.set(truePointX, truePointY);
+        } else {
+            matrix.preRotate(trueRotation, res.getWidth() * xPercent, res.getHeight() * yPercent);
+        }
+
+        if (canDraw) {
+            canvas.drawBitmap(res, matrix, paint);
+        }
+    }
+
+    private void dellFrameAnimation(float viewWidth, float viewHeight, Canvas canvas) {
+        if (scaleInScreen != Integer.MIN_VALUE) {
+            float timesWidth = viewWidth / res.getWidth();
+            float timesHeight = viewHeight / res.getHeight();
+            if (timesWidth >= timesHeight) {
+                matrix.setScale(timesHeight * scaleInScreen, timesHeight * scaleInScreen);
+                if (isCenterInside)
+                    matrix.preTranslate((viewWidth - res.getWidth() * timesHeight) / 2, 0);
+                else
+                    matrix.preTranslate(0, (viewHeight - res.getHeight() * timesHeight * scaleInScreen) / 2);
+            } else {
+                matrix.setScale(timesWidth * scaleInScreen, timesWidth * scaleInScreen);
+                if (isCenterInside)
+                    matrix.preTranslate(0, (viewHeight - res.getHeight() * timesWidth) / 2);
+                else
+                    matrix.preTranslate((viewWidth - res.getWidth() * timesWidth * scaleInScreen) / 2, 0);
+            }
+        }
+        canvas.drawBitmap(res, matrix, paint);
     }
 
     public void startBsrAnimation(OnAnmEndListener endListener, final float alphaTrigger) {
